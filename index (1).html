@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en" class="hydrated"><head>
+
+  <meta charset="UTF-8"><style data-styles="">ion-icon{visibility:hidden}.hydrated{visibility:inherit}</style><style data-styles="">ion-icon{visibility:hidden}.hydrated{visibility:inherit}</style>
+  <title>CodePen Demo</title>
+
+  <meta name="robots" content="noindex">
+
+  <link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+  <link rel="mask-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg" color="#111">
+  <link rel="canonical" href="https://codepen.io/pen/">
+
+  
+  
+
+  <style id="INLINE_PEN_STYLESHEET_ID">
+    
+  </style>
+
+  
+<script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+<script src="https://cpwebassets.codepen.io/assets/editor/iframe/iframeConsoleRunner-6d8bf8b4b479137260842506acbb12717dace0823c023e08b96360e60b0840d9.js"></script>
+<script src="https://cpwebassets.codepen.io/assets/editor/iframe/iframeRefreshCSS-44fe83e49b63affec96918c9af88c0d80b209a862cf87ac46bc933074b8c557d.js"></script>
+<script src="https://cpwebassets.codepen.io/assets/editor/iframe/iframeRuntimeErrors-4f205f2c14e769b448bcf477de2938c681660d5038bc464e3700256713ebe261.js"></script>
+</head>
+
+<body>
+  
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prakrushi | Supporting Farmers. Serving Families.</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  
+  <style>
+    :root {
+      --brand-green: #228B22; --ink: #1f2937; --paper: #ffffff;
+      --stone: #f8f9f4; --line: #e5e7eb; --admin-gold: #FFD700;
+    }
+
+    * { box-sizing: border-box; scroll-behavior: smooth; }
+    body { margin: 0; font-family: "Georgia", serif; color: var(--ink); background: var(--paper); overflow-x: hidden; }
+    .ui-font { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    .container { max-width: 1200px; margin: auto; padding: 0 1.5rem; position: relative; }
+
+    /* --- STICKY ATOMIC DASHBOARD --- */
+    .atomic-dashboard { 
+      display: none; background: rgba(0,0,0,0.95); color: #fff; padding: 10px; 
+      border-radius: 8px; border: 1px solid var(--admin-gold); 
+      font-family: sans-serif; font-size: 9px; 
+      position: sticky; top: 80px; left: 0; z-index: 5000; 
+      width: fit-content; box-shadow: 0 10px 30px rgba(0,0,0,0.4); 
+      flex-wrap: wrap; gap: 5px; margin-bottom: -50px;
+    }
+    .a-btn { background: #333; color: white; border: none; padding: 3px 7px; cursor: pointer; border-radius: 3px; font-weight: 900; }
+    .a-btn:hover { background: var(--brand-green); }
+
+    /* --- NAVIGATION & HAMBURGER --- */
+    header { padding: 1rem 0; border-bottom: 1px solid var(--line); position: sticky; top: 0; background: #fff; z-index: 6000; }
+    nav { display: flex; justify-content: space-between; align-items: center; }
+    .logo-wrap { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+    .logo-img { height: 35px; border-radius: 4px; }
+    .logo-text { font-weight: 800; font-size: 1.4rem; color: var(--brand-green); letter-spacing: -1px; }
+    .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--ink); }
+    .nav-links { display: flex; align-items: center; }
+    .nav-links a { text-decoration: none; color: #4b5563; font-size: 0.8rem; font-weight: 700; margin-left: 1.5rem; text-transform: uppercase; }
+    .get-app-btn { background: var(--brand-green); color: white !important; padding: 8px 16px; border-radius: 4px; margin-left: 1.5rem; }
+
+    @media (max-width: 768px) {
+      .menu-toggle { display: block; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: #fff; flex-direction: column; padding: 2rem; border-bottom: 4px solid var(--brand-green); }
+      .nav-links.active { display: flex; }
+      .nav-links a { margin: 1rem 0; font-size: 1.1rem; }
+    }
+
+    /* --- HERO --- */
+    .hero { position: relative; height: 500px; border-radius: 12px; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; color: white; margin-top: 15px; }
+    .hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; cursor: pointer; }
+    .hero-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.6); z-index: 2; }
+    .hero-content { position: relative; z-index: 3; max-width: 750px; padding: 0 1rem; }
+
+    /* --- IMPACT (4 ICONS) --- */
+    .impact-strip { background: var(--brand-green); color: white; padding: 4rem 0; transition: 0.3s; }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 2rem; text-align: center; }
+    .stat-box i { font-size: 2.5rem; margin-bottom: 10px; display: block; cursor: pointer; }
+
+    /* --- STORY (TEXT WRAPPING IMAGE) --- */
+    section { border-bottom: 1px solid var(--line); position: relative; padding: 60px 0; }
+    .wrap-content { display: block; overflow: hidden; width: 100%; }
+    .float-img { width: 40%; max-width: 450px; float: right; margin-left: 2.5rem; margin-bottom: 1.5rem; border-radius: 12px; cursor: pointer; box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+
+    /* --- VAULT GRIDS --- */
+    .vault-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; }
+    .card { border: 1px solid var(--line); border-radius: 12px; background: #fff; padding: 2.5rem; border-left: 1px solid var(--line); position: relative; }
+    .card-img { width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 1.5rem; cursor: pointer; }
+    .del-btn { position: absolute; top: 10px; right: 10px; color: red; cursor: pointer; font-weight: bold; display: none; background: #fff; border-radius: 50%; width: 25px; height: 25px; text-align: center; line-height: 25px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .clamp-text { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .clamp-text.expanded { -webkit-line-clamp: unset; }
+    .read-more-btn { color: var(--brand-green); cursor: pointer; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; margin-top: 12px; display: inline-block; }
+
+    /* --- GET APP (QR LEFT, CONTENT RIGHT) --- */
+    .app-vault { background: #0f172a; color: #fff; border-radius: 16px; padding: 4rem; display: flex; align-items: center; gap: 4rem; }
+    .qr-side { flex: 0 0 160px; text-align: center; }
+    .qr-box { width: 100%; max-width: 160px; background: #fff; padding: 10px; border-radius: 12px; cursor: pointer; }
+    .app-content { flex: 1; }
+    .badge-btn { height: 42px; max-width: 140px; cursor: pointer; margin-right: 12px; vertical-align: middle; }
+    
+    @media (max-width: 768px) {
+      .app-vault { flex-direction: column; text-align: center; padding: 2.5rem; gap: 2.5rem; }
+      .qr-side { width: 140px; }
+      .float-img { width: 100%; float: none; margin: 0 0 1.5rem 0; }
+    }
+
+    /* --- LEGAL TABS --- */
+    .vault-container { display: grid; grid-template-columns: 1fr 2.5fr; gap: 2.5rem; background: var(--stone); padding: 2.5rem; border-radius: 16px; }
+    .vault-nav { display: flex; flex-direction: column; gap: 8px; }
+    .vault-nav a { padding: 10px; border-radius: 6px; background: #fff; border: 1px solid var(--line); font-weight: 700; color: var(--ink); cursor: pointer; font-size: 0.8rem; text-align: center; text-decoration: none; }
+    .vault-nav a.active { background: var(--brand-green); color: #fff; border-color: var(--brand-green); }
+    .vault-display { background: #fff; padding: 2.5rem; border-radius: 10px; min-height: 350px; }
+
+    @media (max-width: 768px) {
+      .vault-nav { flex-direction: row; overflow-x: auto; padding-bottom: 12px; }
+      .vault-nav a { white-space: nowrap; font-size: 11px; flex-shrink: 0; }
+      .vault-container { grid-template-columns: 1fr; }
+    }
+
+    /* --- FOOTER --- */
+    footer { background: #0f172a; color: #cbd5e1; padding: 60px 0; border-top: 6px solid var(--brand-green); }
+    .footer-grid { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1.2fr; gap: 3rem; }
+    footer h4 { color: #fff; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.75rem; }
+    .f-links { display: flex; flex-direction: column; gap: 10px; position: relative; }
+    footer a { color: inherit; text-decoration: none; font-size: 0.9rem; }
+    .social-row { display: flex; gap: 15px; margin-top: 1.5rem; }
+    .social-row i { font-size: 1.4rem; color: #fff; cursor: pointer; position: relative; }
+    .btn-del { background: #ef4444; color: white; border: none; padding: 10px; width: 100%; cursor: pointer; font-weight: 700; border-radius: 6px; margin-top: 10px; }
+
+    #admin-master-bar { display: none; position: fixed; bottom: 20px; left: 20px; right: 20px; z-index: 9999; background: #111; color: white; padding: 15px; border-radius: 12px; border-top: 4px solid var(--admin-gold); justify-content: space-between; align-items: center; box-shadow: 0 -10px 30px rgba(0,0,0,0.5); }
+    .editable:focus { outline: 2px dashed var(--admin-gold); background: rgba(34, 139, 34, 0.05); }
+  </style>
+
+
+
+<div id="admin-master-bar" class="ui-font" style="display: none;">
+  <div style="font-weight: 900; color: var(--admin-gold); font-size: 11px;">🚀 PRAKRUSHI GHOST-FLOAT ARCHITECT MODE</div>
+  <button class="a-btn" style="background:var(--brand-green); padding:10px 20px;" onclick="deployHTML()">💾 DEPLOY FINAL HTML</button>
+</div>
+
+<header class="ui-font">
+  <div class="container">
+    <nav>
+      <div class="logo-wrap">
+        <input type="file" hidden="" onchange="localUp(this, 'main-logo')">
+        <img src="https://via.placeholder.com/40" class="logo-img" id="main-logo" onclick="this.previousElementSibling.click()">
+        <span class="logo-text editable" id="logo-t">PRAKRUSHI</span>
+      </div>
+      <div class="menu-toggle" onclick="toggleHam()"><i class="fa-solid fa-bars" id="ham-ico"></i></div>
+      <div class="nav-links" id="n-box">
+        <a href="#story" class="editable">Our Story</a>
+        <a href="#farms" class="editable">Farms</a>
+        <a href="#hub-v" class="editable">Markets</a>
+        <a href="#journal" class="editable">Journal</a>
+        <a href="#contact" class="editable">Contact</a>
+        <a href="#app" class="get-app-btn editable">GET APP</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="container">
+  <section id="hero-v">
+    <div class="atomic-dashboard ui-font" style="display: none;">
+      PT: <button class="a-btn" onclick="atm('hero-v','paddingTop',10)">+</button><button class="a-btn" onclick="atm('hero-v','paddingTop',-10)">-</button>
+      PB: <button class="a-btn" onclick="atm('hero-v','paddingBottom',10)">+</button><button class="a-btn" onclick="atm('hero-v','paddingBottom',-10)">-</button>
+      GT: <button class="a-btn" onclick="atm('hero-h1','marginBottom',10)">+</button><button class="a-btn" onclick="atm('hero-h1','marginBottom',-10)">-</button>
+      GL: <button class="a-btn" onclick="atm('hero-v','lineHeight',0.1)">+</button><button class="a-btn" onclick="atm('hero-v','lineHeight',-0.1)">-</button>
+      FT: <button class="a-btn" onclick="fnc('hero-v')">TYPE</button>
+      FS: <button class="a-btn" onclick="atm('hero-h1','fontSize',2)">+</button><button class="a-btn" onclick="atm('hero-h1','fontSize',-2)">-</button>
+    </div>
+    <div class="hero">
+      <input type="file" hidden="" onchange="localUp(this, 'h-bg')">
+      <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=1200" class="hero-bg" id="h-bg" onclick="this.previousElementSibling.click()">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1 class="editable" id="hero-h1">Trust in food begins with soil, patience, and people who care.</h1>
+        <p class="editable" id="hero-p">Clean produce begins long before it reaches the kitchen.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="impact-v" style="padding:0; border:none;">
+    <div class="atomic-dashboard ui-font" style="display: none;">
+      PT: <button class="a-btn" onclick="atm('impact-box','paddingTop',10)">+</button><button class="a-btn" onclick="atm('impact-box','paddingTop',-10)">-</button>
+      PB: <button class="a-btn" onclick="atm('impact-box','paddingBottom',10)">+</button><button class="a-btn" onclick="atm('impact-box','paddingBottom',-10)">-</button>
+      FS: <button class="a-btn" onclick="atm('impact-box','fontSize',1)">+</button><button class="a-btn" onclick="atm('impact-box','fontSize',-1)">-</button>
+    </div>
+    <div class="impact-strip ui-font" id="impact-box">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-box"><i class="fa-light fa-tractor" onclick="edIco(this)"></i><strong class="editable">120+</strong><span class="editable">Farmers</span></div>
+          <div class="stat-box"><i class="fa-light fa-shop" onclick="edIco(this)"></i><strong class="editable">08</strong><span class="editable">Hubs</span></div>
+          <div class="stat-box"><i class="fa-light fa-earth-asia" onclick="edIco(this)"></i><strong class="editable">4.2k</strong><span class="editable">Ecology</span></div>
+          <div class="stat-box"><i class="fa-light fa-heart" onclick="edIco(this)"></i><strong class="editable">900+</strong><span class="editable">Families</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="story">
+    <div class="atomic-dashboard ui-font" style="display: none;">
+      PT: <button class="a-btn" onclick="atm('story','paddingTop',10)">+</button><button class="a-btn" onclick="atm('story','paddingTop',-10)">-</button>
+      PB: <button class="a-btn" onclick="atm('story','paddingBottom',10)">+</button><button class="a-btn" onclick="atm('story','paddingBottom',-10)">-</button>
+      GT: <button class="a-btn" onclick="atm('story-h2','marginBottom',10)">+</button><button class="a-btn" onclick="atm('story-h2','marginBottom',-10)">-</button>
+      GL: <button class="a-btn" onclick="atm('story-p','lineHeight',0.1)">+</button><button class="a-btn" onclick="atm('story-p','lineHeight',-0.1)">-</button>
+      FT: <button class="a-btn" onclick="fnc('story-p')">TYPE</button>
+      FS: <button class="a-btn" onclick="atm('story-p','fontSize',1)">+</button><button class="a-btn" onclick="atm('story-p','fontSize',-1)">-</button>
+    </div>
+    <div class="wrap-content">
+      <input type="file" hidden="" onchange="localUp(this, 's-img')">
+      <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&amp;fit=crop&amp;w=800" class="float-img" id="s-img" onclick="this.previousElementSibling.click()">
+      <h2 class="editable" id="story-h2">🌱 Our Story</h2>
+      <div class="editable" id="story-p"><p class="p1" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(0, 0, 0);">Prakrushi is an informal initiative supported by Sristi Innovations, a not-for-profit organisation.</p><p class="p2" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px; color: rgb(0, 0, 0);"><br></p><p class="p1" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(0, 0, 0);">Clean produce begins long before it reaches the kitchen — in the soil, in patience, and in honest effort.</p><p class="p2" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px; color: rgb(0, 0, 0);"><br></p><p class="p1" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(0, 0, 0);">Today, many families want produce they can trust, and many farmers want to farm responsibly, but both are often unsure whom to rely on. Sristi Innovations exists to quietly bring them together.</p><p class="p2" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px; color: rgb(0, 0, 0);"><br></p><p class="p1" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(0, 0, 0);">🌾 What We Do</p><p class="p1" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(0, 0, 0);">We walk alongside farmers who follow natural ways of farming based on their own wisdom and experience</p><p class="p1" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(0, 0, 0);">We visit farms and look for simple, real signs that show the land is healthy and cared for</p><p class="p1" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(0, 0, 0);">These signs come from many years of learning and working closely with farms across regions</p><p class="p2" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px; color: rgb(0, 0, 0);"><br></p><p class="p1" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(0, 0, 0);">🌱 How We Support Farmers</p><p class="p1" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(0, 0, 0);">we support farmers by connecting them with conscious people who value how produce is grown, not just how it looks. This helps farmers receive fair and better returns for their effort and patience.</p><p class="p2" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px; color: rgb(0, 0, 0);"><br></p><p class="p1" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(0, 0, 0);">When farmers see that caring for the land is respected and rewarded, they are encouraged to continue natural farming. This also inspires other farmers nearby to observe, learn, and gradually move toward similar practices.</p><p class="p2" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px; color: rgb(0, 0, 0);"><br></p><p class="p1" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(0, 0, 0);">When farmers face challenges, we do not impose rules or give orders. We share practical ideas from our long field experience — only when they suit the land and the situation. Like a honey bee, we gently carry useful learning from one place to another, allowing good practices to spread naturally.</p><p class="p2" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px; color: rgb(0, 0, 0);"><br></p><p class="p1" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(0, 0, 0);">Many farmers also prepare value added produce using traditional methods such as stone-ground grains, sun-dried spices, and homemade preserves. We support this heritage while encouraging clean handling and safe preparation, so tradition remains alive, responsible, and meaningful.</p><p class="p2" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px; color: rgb(0, 0, 0);"><br></p><p class="p1" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(0, 0, 0);">The larger aim is to support farming livelihoods, protect soil and ecology, and keep farming viable for future generations.</p><p class="p2" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px; color: rgb(0, 0, 0);"><br></p><p class="p1" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(0, 0, 0);">🌼 Helping Families Make Conscious Choices</p><p class="p1" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(0, 0, 0);">Prakrushi connects families with the story behind their food.</p><p class="p1" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(0, 0, 0);">Through simple explanations and open sharing, we help people understand how produce is grown, who grows it, and why it matters. This allows families to make conscious choices — choosing fresh, seasonal, and thoughtfully prepared produce that aligns with their values.</p><p class="p1" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(0, 0, 0);">Like the Honey Bee Network philosophy, Sristi Innovations acts as a quiet connector, allowing trust and learning to flow naturally between farmers and families.</p><p class="p2" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px; color: rgb(0, 0, 0);"><br></p><p class="p1" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(0, 0, 0);">🌿 Why Use the Prakrushi App</p><p class="p2" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px; color: rgb(0, 0, 0);"><br></p><p class="p1" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(0, 0, 0);">To understand where your produce comes from, beyond labels and claims</p><p class="p2" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px; color: rgb(0, 0, 0);"><br></p><p class="p1" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(0, 0, 0);">To support farmers who care for their land and grow responsibly</p><p class="p2" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px; color: rgb(0, 0, 0);"><br></p><p class="p1" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(0, 0, 0);">To make conscious choices about fresh and homemade produce</p><p class="p2" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px; color: rgb(0, 0, 0);"><br></p><p class="p1" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(0, 0, 0);">To encourage farming practices that respect soil, water, and nature</p><p class="p2" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px; color: rgb(0, 0, 0);"><br></p><p class="p1" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(0, 0, 0);">To be part of a quiet network that connects farmers and families through trust</p><p class="p2" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px; color: rgb(0, 0, 0);"><br></p><p class="p1" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(0, 0, 0);">🤍 What We Believe</p><p class="p1" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(0, 0, 0);">Farmers deserve dignity and fair value</p><p class="p1" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(0, 0, 0);">Families deserve honesty in what they choose</p><p class="p2" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px; color: rgb(0, 0, 0);"><br></p><p class="p1" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(0, 0, 0);">Nature deserves time, balance, and respect</p><p class="p2" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px; color: rgb(0, 0, 0);"><br></p><p class="p1" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(0, 0, 0);">Trust is not a slogan for us — it is a responsibility.</p><p class="p2" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px; color: rgb(0, 0, 0);"><br></p><p class="p1" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(0, 0, 0);">Prakrushi by Sristi Innovations is a clear window into farming.</p><p class="p2" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; min-height: 15px; color: rgb(0, 0, 0);"><br></p><p class="p1" style="margin: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(0, 0, 0);">Simple. Honest. Responsible.</p></div>
+    </div>
+  </section>
+
+  <section id="farms">
+    <div class="atomic-dashboard ui-font" style="display: none;">
+      PT: <button class="a-btn" onclick="atm('farms','paddingTop',10)">+</button><button class="a-btn" onclick="atm('farms','paddingTop',-10)">-</button>
+      ADD: <button class="a-btn" onclick="addC('f-grid', true)">+ CARD</button>
+    </div>
+    <h2 class="editable">Farms &amp; Farmers</h2>
+    <div class="vault-grid" id="f-grid">
+      <div class="card">
+        <span class="del-btn" onclick="this.parentElement.remove()" style="display: none;">×</span>
+        <input type="file" hidden="" onchange="localUp(this, this.nextElementSibling)">
+        <img src="https://via.placeholder.com/320x200" class="card-img" onclick="this.previousElementSibling.click()">
+        <h3 class="editable">Savitaben | Anand</h3>
+        <div class="clamp-text editable">Heritage seed conservation using traditional sun-drying methods.</div>
+        <span class="read-more-btn" onclick="toggleR(this)">Read More ...</span>
+      </div>
+    <div class="card"><span class="del-btn" style="display: none;" onclick="this.parentElement.remove()">×</span><input type="file" hidden="" onchange="localUp(this, this.nextElementSibling)"><img src="https://via.placeholder.com/320x200" class="card-img" onclick="this.previousElementSibling.click()"><h3 class="editable">Title</h3><div class="clamp-text editable">Content...</div><span class="read-more-btn" onclick="toggleR(this)">Read More ...</span></div></div>
+  </section>
+
+  <section id="hub-v">
+    <div class="atomic-dashboard ui-font" style="display: none;">
+      PT: <button class="a-btn" onclick="atm('hub-v','paddingTop',10)">+</button><button class="a-btn" onclick="atm('hub-v','paddingTop',-10)">-</button>
+      ADD: <button class="a-btn" onclick="addC('hub-grid', false)">+ HUB</button>
+    </div>
+    <h2 class="editable">Discovery Hubs</h2>
+    <div class="vault-grid" id="hub-grid">
+      <div class="card">
+        <span class="del-btn" onclick="this.parentElement.remove()" style="display: none;">×</span>
+        <h3 class="editable">Grambharti Campus</h3>
+        <p class="editable">Gandhinagar (Weekly Market). Physical spaces where trust flows naturally.</p>
+      </div>
+    <div class="card"><span class="del-btn" style="display: none;" onclick="this.parentElement.remove()">×</span><h3 class="editable">Navjivan</h3><div class="clamp-text editable">Content...</div><span class="read-more-btn" onclick="toggleR(this)">Read More ...</span></div><div class="card"><span class="del-btn" style="display: none;" onclick="this.parentElement.remove()">×</span><h3 class="editable">Title</h3><div class="clamp-text editable">Content...</div><span class="read-more-btn" onclick="toggleR(this)">Read More ...</span></div></div>
+  </section>
+
+  <section id="journal">
+    <div class="atomic-dashboard ui-font" style="display: none;">
+      PT: <button class="a-btn" onclick="atm('journal','paddingTop',10)">+</button><button class="a-btn" onclick="atm('journal','paddingTop',-10)">-</button>
+      ADD: <button class="a-btn" onclick="addC('j-grid', true)">+ STORY</button>
+    </div>
+    <h2 class="editable">Field Journal</h2>
+    <div class="vault-grid" id="j-grid">
+      <div class="card">
+        <span class="del-btn" onclick="this.parentElement.remove()" style="display: none;">×</span>
+        <input type="file" hidden="" onchange="localUp(this, this.nextElementSibling)">
+        <img src="https://via.placeholder.com/320x200" class="card-img" onclick="this.previousElementSibling.click()">
+        <h3 class="editable">Art of Sun-Drying</h3>
+        <div class="clamp-text editable">Observations on natural biological integrity.</div>
+        <span class="read-more-btn" onclick="toggleR(this)">Read More ...</span>
+      </div>
+    <div class="card"><span class="del-btn" style="display: none;" onclick="this.parentElement.remove()">×</span><input type="file" hidden="" onchange="localUp(this, this.nextElementSibling)"><img src="https://via.placeholder.com/320x200" class="card-img" onclick="this.previousElementSibling.click()"><h3 class="editable">Title</h3><div class="clamp-text editable">Content...</div><span class="read-more-btn" onclick="toggleR(this)">Read More ...</span></div><div class="card"><span class="del-btn" style="display: none;" onclick="this.parentElement.remove()">×</span><input type="file" hidden="" onchange="localUp(this, this.nextElementSibling)"><img src="https://via.placeholder.com/320x200" class="card-img" onclick="this.previousElementSibling.click()"><h3 class="editable">Title</h3><div class="clamp-text editable">Content...</div><span class="read-more-btn" onclick="toggleR(this)">Read More ...</span></div><div class="card"><span class="del-btn" style="display: none;" onclick="this.parentElement.remove()">×</span><input type="file" hidden="" onchange="localUp(this, this.nextElementSibling)"><img src="https://via.placeholder.com/320x200" class="card-img" onclick="this.previousElementSibling.click()"><h3 class="editable">Title</h3><div class="clamp-text editable">Content...</div><span class="read-more-btn" onclick="toggleR(this)">Read More ...</span></div></div>
+  </section>
+
+  <section id="app">
+    <div class="atomic-dashboard ui-font" style="display: none;">
+      PT: <button class="a-btn" onclick="atm('app','paddingTop',10)">PT+</button><button class="a-btn" onclick="atm('app','paddingTop',-10)">PT-</button>
+      PB: <button class="a-btn" onclick="atm('app','paddingBottom',10)">PB+</button><button class="a-btn" onclick="atm('app','paddingBottom',-10)">PB-</button>
+      FS: <button class="a-btn" onclick="atm('app-p','fontSize',1)">+</button><button class="a-btn" onclick="atm('app-p','fontSize',-1)">-</button>
+    </div>
+    <div class="app-vault ui-font">
+      <div class="qr-side">
+        <input type="file" hidden="" onchange="localUp(this, 'qr-box')">
+        <img src="data:image/png;base64,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BAjsXkBY3L2pHgkQIECAAAECkxEQFiczlQZCgAABAgQIENi9gLC4e1M9EiBAgAABAgQmIyAsTmYqDYQAAQIECBAgsHsBYXH3pnokQIAAAQIECExGQFiczFQaCAECBAgQIEBg9wLC4u5N9UiAAAECBAgQmIyAsDiZqTQQAgQIECBAgMDuBYTF3ZvqkQABAgQIECAwGQFhcTJTaSAECBAgQIAAgd0LCIu7N9UjAQIECBAgQGAyAsLiZKbSQAgQIECAAAECuxc42n2Xk+lxkUZyOJnRlBnISZluJ9Pr2L++Ss9vaZ/TgldS9D3m+oNm7K9vpf0LXj7Fu97H3I7dv/TrQ/FJ3ucJIhCVfCxLdp76Lll/fCEcF65/7N2X9A+bMV8/+6i/5PWzjzA05vndx+tDya+vfdRf8vrUN4HrCpT8+rpubdUd723o6qZEQQQIECBAgACBegSExXrmQiUECBAgQIAAgeoEhMXqpkRBBAgQIECAAIF6BITFeuZCJQQIECBAgACB6gSExeqmREEECBAgQIAAgXoEhMV65kIlBAgQIECAAIHqBITF6qZEQQQIECBAgACBegSExXrmQiUECBAgQIAAgeoEhMXqpkRBBAgQIECAAIF6BITFeuZCJQQIECBAgACB6gSExeqmREEECBAgQIAAgXoEhMV65kIlBAgQIECAAIHqBITF6qZEQQQIECBAgACBegSExXrmQiUECBAgQIAAgeoEhMXqpkRBBAgQIECAAIF6BITFeuZCJQQIECBAgACB6gSExeqmREEECBAgQIAAgXoEhMV65kIlBAgQIECAAIHqBITF6qZEQQQIECBAgACBegSExXrmQiUECBAgQIAAgeoEhMXqpkRBBAgQIECAAIF6BITFeuZCJQQIECBAgACB6gSExeqmREEECBAgQIAAgXoEjuopRSUECGwhcJralvz6jb6XW9SzbdOof7HtQTNrz//uTXhc/8d37/SzP3Pp17fSwKWvn737uLNY+pLRPwECBAgQIEBgxALC4ognT+kECBAgQIAAgdICwmJpYf0TIECAAAECBEYsICyOePKUToAAAQIECBAoLSAslhbWPwECBAgQIEBgxALC4ognT+kECBAgQIAAgdICwmJpYf0TIECAAAECBEYsICyOePKUToAAAQIECBAoLSAslhbWPwECBAgQIEBgxALC4ognT+kECBAgQIAAgdICwmJpYf0TIECAAAECBEYsICyOePKUToAAAQIECBAoLSAslhbWPwECBAgQIEBgxALC4ognT+kECBAgQIAAgdICwmJpYf0TIECAAAECBEYsICyOePKUToAAAQIECBAoLSAslhbWPwECBAgQIEBgxALC4ognT+kECBAgQIAAgdICwmJpYf0TIECAAAECBEYsICyOePKUToAAAQIECBAoLSAslhbWPwECBAgQIEBgxALC4ognT+kECBAgQIAAgdICR6VPoH8CBAgQuCOB0zs66moHRd+lX/9PrlaKVgQeVsD1+bAsd2dj6cm4O6NyVgIECIxfoOTrc/R9XJhoUbh/3V8usI//GLj87Nff4/q8vuFOe/A29E45dUaAAAECBAgQmJaAsDit+TQaAgQIECBAgMBOBYTFnXLqjAABAgQIECAwLQFhcVrzaTQECBAgQIAAgZ0KCIs75dQZAQIECBAgQGBaAsLitObTaAgQIECAAAECOxUQFnfKqTMCBAgQIECAwLQEhMVpzafRECBAgAABAgR2KiAs7pRTZwQIECBAgACBaQkIi9OaT6MhQIAAAQIECOxUQFjcKafOCBAgQIAAAQLTEhAWpzWfRkOAAAECBAgQ2KmAsLhTTp0RIECAAAECBKYlICxOaz6NhgABAgQIECCwUwFhcaecOiNAgAABAgQITEtAWJzWfBoNAQIECBAgQGCnAsLiTjl1RoAAAQIECBCYloCwOK35NBoCBAgQIECAwE4FhMWdcuqMAAECBAgQIDAtAWFxWvNpNAQIECBAgACBnQoIizvl1BkBAgQIECBAYFoCwuK05tNoCBAgQIAAAQI7FRAWd8qpMwIECBAgQIDAtASOpjWcnY7mJPW22GmPOpubwJivH9f/8NXKZ9hnH3uXBU9ymvou/fUb19BhwTGMuWtfX5XNnjuLlU2IcggQIECAAAECNQkIizXNhloIECBAgAABApUJCIuVTYhyCBAgQIAAAQI1CQiLNc2GWggQIECAAAEClQkIi5VNiHIIECBAgAABAjUJCIs1zYZaCBAgQIAAAQKVCQiLlU2IcggQIECAAAECNQkIizXNhloIECBAgAABApUJCIuVTYhyCBAgQIAAAQI1CQiLNc2GWggQIECAAAEClQkIi5VNiHIIECBAgAABAjUJCIs1zYZaCBAgQIAAAQKVCQiLlU2IcggQ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" class="qr-box" id="qr-box" onclick="this.previousElementSibling.click()">
+      </div>
+      <div class="app-content">
+        <h2 class="editable" style="color:#fff">The Prakrushi App</h2>
+        <p class="editable" id="app-p" style="color:#94a3b8">Understand where your produce comes from beyond labels.</p>
+        <div style="display:flex; gap:15px; margin-top:2rem; flex-wrap:wrap;">
+          <input type="file" hidden="" onchange="localUp(this, this.nextElementSibling)">
+          <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" class="badge-btn" onclick="this.previousElementSibling.click()">
+          <input type="file" hidden="" onchange="localUp(this, this.nextElementSibling)">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" class="badge-btn" onclick="this.previousElementSibling.click()">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="atomic-dashboard ui-font" style="display: none;">
+      PT: <button class="a-btn" onclick="atm('contact','paddingTop',10)">PT+</button><button class="a-btn" onclick="atm('contact','paddingTop',-10)">PT-</button>
+      PB: <button class="a-btn" onclick="atm('contact','paddingBottom',10)">PB+</button><button class="a-btn" onclick="atm('contact','paddingBottom',-10)">PB-</button>
+    </div>
+    <div class="vault-container">
+      <div class="vault-nav ui-font">
+        <a onclick="shL(this,'l1')" class="active">Legal Sovereignty</a>
+        <a onclick="shL(this,'l2')" class="">Terms of Use</a>
+        <a onclick="shL(this,'l3')" class="">Privacy Policy</a>
+        <a onclick="shL(this,'l4')" class="">Refund Policy</a>
+      </div>
+      <div class="vault-display ui-font" id="leg-box">
+        <div id="l1" class="legal-content editable active"><h4><br></h4></div>
+        <div id="l2" class="legal-content editable"><h4><br></h4></div>
+        <div id="l3" class="legal-content editable"><h4><br></h4></div>
+        <div id="l4" class="legal-content editable"><h4><br></h4></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer class="ui-font">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4 class="editable">PRAKRUSHI</h4><p class="editable">Sristi Innovations initiative. Gujarat.</p>
+        <div class="social-row" id="s-row">
+          <span style="position:relative"><i class="fa-brands fa-whatsapp" onclick="edS(this)"></i><b class="del-btn" onclick="this.parentElement.remove()" style="display: none;">×</b></span>
+          <span style="position:relative"><i class="fa-brands fa-youtube" onclick="edS(this)"></i><b class="del-btn" onclick="this.parentElement.remove()" style="display: none;">×</b></span>
+        <span style="position: relative;"><i class="fa-brands fa-instagram" onclick="edS(this)"></i><b class="del-btn" style="display: none;" onclick="this.parentElement.remove()">×</b></span><span style="position: relative;"><i class="fa-brands fa-fb" onclick="edS(this)"></i><b class="del-btn" style="display: none;" onclick="this.parentElement.remove()">×</b></span></div>
+        <button class="a-btn admin-on" style="display: none; margin-top: 15px;" onclick="adS()">+ ICON</button>
+      </div>
+      <div>
+        <h4 class="editable">PORTALS</h4>
+        <div class="f-links" id="p-links"><a onclick="unlock()">Admin Panel</a><span style="position:relative"><a class="editable">vendor panel</a><b class="del-btn" onclick="this.parentElement.remove()" style="display: none;">×</b></span></div>
+        <button class="a-btn admin-on" style="display: none; margin-top: 10px;" onclick="adF('p-links')">+ NAME</button>
+      </div>
+      <div>
+        <h4 class="editable">QUICK LINKS</h4>
+        <div class="f-links" id="q-links"><span style="position:relative"><a href="#story" class="editable">Our Story</a><b class="del-btn" onclick="this.parentElement.remove()" style="display: none;">×</b></span><span style="position: relative;"><a class="editable">our work</a><b class="del-btn" style="display: none;" onclick="this.parentElement.remove()">×</b></span><span style="position: relative;"><a class="editable">Journal</a><b class="del-btn" style="display: none;" onclick="this.parentElement.remove()">×</b></span></div>
+        <button class="a-btn admin-on" style="display: none; margin-top: 10px;" onclick="adF('q-links')">+ NAME</button>
+      </div>
+      <div><h4 class="editable">SOVEREIGNTY</h4><button class="btn-del editable">Delete Account</button></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  let isAd = false;
+  function toggleHam() {
+    const l = document.getElementById('n-box'); const i = document.getElementById('ham-ico');
+    l.classList.toggle('active'); i.classList.toggle('fa-bars'); i.classList.toggle('fa-xmark');
+  }
+  function shL(btn, id) {
+    document.querySelectorAll('.vault-nav a').forEach(a => a.classList.remove('active'));
+    document.querySelectorAll('.legal-content').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active'); document.getElementById(id).classList.add('active');
+  }
+  function toggleR(btn) {
+    const t = btn.previousElementSibling; t.classList.toggle('expanded');
+    btn.innerText = t.classList.contains('expanded') ? 'Show Less' : 'Read More ...';
+  }
+  function atm(id, pr, am) {
+    let el = document.getElementById(id); let val = parseFloat(window.getComputedStyle(el)[pr]) || 0;
+    el.style[pr] = (val + am) + (pr.includes('lineHeight') ? '' : 'px');
+  }
+  function fnc(id) {
+    let el = document.getElementById(id); const fonts = ['Georgia', 'Arial', 'monospace', 'system-ui'];
+    let cur = fonts.indexOf(el.style.fontFamily) || 0; el.style.fontFamily = fonts[(cur+1)%fonts.length];
+  }
+  function unlock() {
+    if(prompt("PIN:") === "sristi2026") {
+      isAd = true; document.getElementById('admin-master-bar').style.display = 'flex';
+      document.querySelectorAll('.atomic-dashboard, .admin-on, .del-btn').forEach(b => b.style.display = 'flex');
+      document.querySelectorAll('.editable').forEach(e => e.setAttribute('contenteditable', 'true'));
+      alert("🐝 Sticky Sovereign Mode Active.");
+    }
+  }
+  function localUp(input, tid) {
+    if(!isAd) return; const r = new FileReader();
+    r.onload = (e) => { document.getElementById(tid).src = e.target.result; };
+    r.readAsDataURL(input.files[0]);
+  }
+  function edIco(i) {
+    if(!isAd) return; let c = prompt("Icon Class:", i.className); if(c) i.className = c;
+  }
+  function edS(i) {
+    if(!isAd) return; let c = prompt("Icon Class:", i.className); if(c) i.className = c;
+  }
+  function adS() {
+    let s = document.createElement('span'); s.style.position = "relative";
+    s.innerHTML = `<i class="fa-brands fa-instagram" onclick="edS(this)"></i><b class="del-btn" style="display:flex" onclick="this.parentElement.remove()">×</b>`;
+    document.getElementById('s-row').appendChild(s);
+  }
+  function adF(id) {
+    let s = document.createElement('span'); s.style.position = "relative";
+    s.innerHTML = `<a class="editable" contenteditable="true">New Item</a><b class="del-btn" style="display:flex" onclick="this.parentElement.remove()">×</b>`;
+    document.getElementById(id).appendChild(s);
+  }
+  function addC(g, hasI) {
+    let c = document.createElement('div'); c.className = 'card';
+    c.innerHTML = `<span class="del-btn" style="display:flex" onclick="this.parentElement.remove()">×</span>` + 
+    (hasI ? `<input type="file" hidden onchange="localUp(this, this.nextElementSibling)"><img src="https://via.placeholder.com/320x200" class="card-img" onclick="this.previousElementSibling.click()">` : '') + 
+    `<h3 class="editable" contenteditable="true">Title</h3><div class="clamp-text editable" contenteditable="true">Content...</div><span class="read-more-btn" onclick="toggleR(this)">Read More ...</span>`;
+    document.getElementById(g).appendChild(c);
+  }
+  function deployHTML() {
+    document.getElementById('admin-master-bar').style.display = 'none';
+    document.querySelectorAll('.atomic-dashboard, .admin-on, .del-btn').forEach(b => b.style.display = 'none');
+    document.querySelectorAll('.editable').forEach(e => e.removeAttribute('contenteditable'));
+    const blob = new Blob(["<!DOCTYPE html>\n" + document.documentElement.outerHTML], { type: 'text/html' });
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'index.html'; a.click();
+  }
+</script>
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/19.1.1/cjs/react.production.min.js"></script>
+<script src="r"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/19.1.1/cjs/react-dom.production.min.js"></script>
+  
+
+
+<script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;a16372a7df004ce1931e5a513e19a10f&quot;,&quot;r&quot;:1,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}" crossorigin="anonymous"></script>
+</body></html>
