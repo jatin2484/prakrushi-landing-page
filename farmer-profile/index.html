@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Farmer Profile</title>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const farmerId = window.location.pathname.split("/").pop();
+
+      const isAndroid = /Android/i.test(navigator.userAgent);
+      const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+      if (isAndroid) {
+        // Android intent link
+        window.location.href =
+          `intent://farmer-profile/${farmerId}` +
+          `#Intent;scheme=https;package=com.prakrushi.app;end`;
+
+        // Play Store fallback (after 1.5 sec)
+        setTimeout(() => {
+          window.location.href =
+            "https://play.google.com/store/apps/details?id=com.prakrushi.app";
+        }, 1500);
+      }
+
+      if (isIOS) {
+        // iOS App Store
+        window.location.href =
+          "https://apps.apple.com/app/idYOUR_APP_ID";
+      }
+    });
+  </script>
+</head>
+
+<body>
+  <p>Opening Prakrushi App…</p>
+</body>
+</html>
