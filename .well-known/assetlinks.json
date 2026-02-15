@@ -1,0 +1,11 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.prakrushi.app",
+      "sha256_cert_fingerprints":
+        ["17:25:DF:62:40:50:8E:24:DD:76:97:97:19:C0:53:D1:CE:4E:2A:82:26:24:72:4B:11:11:33:07:05:D3:AB:5B"]
+    }
+  }
+]
