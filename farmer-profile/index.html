@@ -5,32 +5,43 @@
   <title>Farmer Profile</title>
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const farmerId = window.location.pathname.split("/").pop();
+  document.addEventListener("DOMContentLoaded", () => {
+    const path = window.location.pathname;
 
-      const isAndroid = /Android/i.test(navigator.userAgent);
-      const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    // Match /farmer-profile/{id}
+    const match = path.match(/farmer-profile\/(\d+)/);
+    const farmerId = match ? match[1] : null;
 
-      if (isAndroid) {
-        // Android intent link
+    if (!farmerId) {
+      console.error("Farmer ID not found in URL");
+      return;
+    }
+
+    const isAndroid = /Android/i.test(navigator.userAgent);
+    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    if (isAndroid) {
+      // Android deep link
+      window.location.href =
+        `intent://farmer-profile/${farmerId}` +
+        `#Intent;scheme=https;package=com.prakrushi.app;end`;
+
+      // Play Store fallback
+      setTimeout(() => {
         window.location.href =
-          `intent://farmer-profile/${farmerId}` +
-          `#Intent;scheme=https;package=com.prakrushi.app;end`;
-
-        // Play Store fallback (after 1.5 sec)
-        setTimeout(() => {
-          window.location.href =
-            "https://play.google.com/store/apps/details?id=com.prakrushi.app";
-        }, 1500);
-      }
-
-      if (isIOS) {
-        // iOS App Store
-        window.location.href =
-          "https://apps.apple.com/app/idYOUR_APP_ID";
-      }
-    });
-  </script>
+          "https://play.google.com/store/apps/details?id=com.prakrushi.app";
+      }, 1500);
+    } else if (isIOS) {
+      // iOS App Store (replace with real ID)
+      window.location.href =
+        "https://apps.apple.com/app/idYOUR_APP_ID";
+    } else {
+      // Desktop fallback
+      document.body.innerHTML =
+        "<p>Please open this link on your mobile device.</p>";
+    }
+  });
+</script>
 </head>
 
 <body>
