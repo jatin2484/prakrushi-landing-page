@@ -3,42 +3,55 @@
 <head>
   <meta charset="UTF-8" />
   <title>Farmer Profile</title>
+<body>
+  <h2>Farmer Profile</h2>
+  <button id="openApp">Open in App</button>
 
   <script>
+    const path = window.location.pathname;
+    const match = path.match(/^\/farmer-profile\/(\d+)/);
+    const farmerId = match ? match[1] : null;
+
+    document.getElementById("openApp").onclick = () => {
+      window.location.href =
+        `intent://farmer-profile/${farmerId}` +
+        `#Intent;scheme=https;package=com.prakrushi.app;end`;
+    };
+  </script>
+</body>
+ <script>
   document.addEventListener("DOMContentLoaded", () => {
     const path = window.location.pathname;
 
-    // Match /farmer-profile/{id}
-    const match = path.match(/farmer-profile\/(\d+)/);
+    // Extract ID safely
+    const match = path.match(/^\/farmer-profile\/(\d+)/);
     const farmerId = match ? match[1] : null;
 
-    if (!farmerId) {
-      console.error("Farmer ID not found in URL");
-      return;
-    }
+    if (!farmerId) return;
 
     const isAndroid = /Android/i.test(navigator.userAgent);
     const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
+    // 🚫 DO NOTHING on desktop
+    if (!isAndroid && !isIOS) {
+      console.log("Desktop detected, not opening app");
+      return;
+    }
+
     if (isAndroid) {
-      // Android deep link
       window.location.href =
         `intent://farmer-profile/${farmerId}` +
         `#Intent;scheme=https;package=com.prakrushi.app;end`;
 
-      // Play Store fallback
       setTimeout(() => {
         window.location.href =
           "https://play.google.com/store/apps/details?id=com.prakrushi.app";
       }, 1500);
-    } else if (isIOS) {
-      // iOS App Store (replace with real ID)
+    }
+
+    if (isIOS) {
       window.location.href =
         "https://apps.apple.com/app/idYOUR_APP_ID";
-    } else {
-      // Desktop fallback
-      document.body.innerHTML =
-        "<p>Please open this link on your mobile device.</p>";
     }
   });
 </script>
