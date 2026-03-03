@@ -599,8 +599,10 @@ Phone: +91 9XXXXXXXXX
 <a href="contact-us.html">Contact Us</a>
 </div>
 <div>
-<h4>Sovereignty</h4>
-<a href="#" class="delete-btn">Delete Account</a>
+  <h4>Sovereignty</h4>
+  <a href="delete-account/index.html" class="delete-btn">
+    Delete Account
+  </a>
 </div>
 </footer>
 
@@ -754,55 +756,6 @@ function toggleMenu(){
 document.querySelector(".links").classList.toggle("active");
 }
 </script>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const path = window.location.pathname;
 
-    // ✅ Match /farmer-profile/:id
-    // Examples:
-    // /farmer-profile/11  → match
-    // /farmer-profile/121 → match
-    // /farmer-profile     → no match
-    const match = path.match(/^\/farmer-profile\/(\d+)\/?$/);
-
-    if (!match) {
-      // Not a farmer profile route → do nothing
-      return;
-    }
-
-    const farmerId = match[1];
-
-    const ua = navigator.userAgent || "";
-    const isAndroid = /Android/i.test(ua);
-    const isIOS = /iPhone|iPad|iPod/i.test(ua);
-
-    // 🚫 Do nothing on desktop
-    if (!isAndroid && !isIOS) {
-      console.log("Desktop detected. Farmer ID:", farmerId);
-      return;
-    }
-
-    // ✅ ANDROID
-    if (isAndroid) {
-      window.location.href =
-        `intent://farmer-profile/${farmerId}` +
-        `#Intent;scheme=https;package=com.prakrushi.app;end`;
-
-      // Play Store fallback
-      setTimeout(() => {
-        window.location.href =
-          "https://play.google.com/store/apps/details?id=com.prakrushi.app";
-      }, 1500);
-    }
-
-    // ✅ iOS
-    if (isIOS) {
-      // Replace with your real App Store ID or Universal Link
-      window.location.href =
-        "https://apps.apple.com/app/idYOUR_APP_ID";
-    }
-  });
-</script>
 </body>
 </html>
-
