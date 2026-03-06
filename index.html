@@ -64,53 +64,130 @@ line-height:1.2;margin:auto
 
 /* IMPACT */
 .impact{
-min-height:150vh;
+min-height:120vh;
 display:flex;
 align-items:center;
 justify-content:center;
 padding:140px 8%;
-background:radial-gradient(circle at center,#0f3b30 0%,#061a15 70%);
+position:relative;
+
+/* Olive green background */
+background:
+radial-gradient(circle at 25% 20%, rgba(107,142,35,0.25), transparent 45%),
+radial-gradient(circle at 75% 80%, rgba(128,128,0,0.20), transparent 50%),
+linear-gradient(180deg,#3b4a1f,#2f3d16,#1f2a0f);
+
+overflow:hidden;
+}
+
+.impact::before{
+content:"";
+position:absolute;
+inset:0;
+background:
+radial-gradient(circle at 40% 40%, rgba(170,190,90,0.15), transparent 60%);
+pointer-events:none;
+}
+
+/* subtle floating background icons */
+.impact{
+background:
+radial-gradient(circle at 50% -20%, rgba(180,210,120,0.18), transparent 55%),
+radial-gradient(circle at 80% 70%, rgba(60,100,50,0.35), transparent 60%),
+linear-gradient(180deg,#041712,#0b2a22,#051915);
 }
 
 .impact-wrapper{
 width:100%;
-max-width:1300px;
+max-width:1200px;
 text-align:center;
-}
-
-.impact-title{
-font-size:2.8rem;
-margin-bottom:80px;
 }
 
 .metric-grid{
 display:grid;
 grid-template-columns:repeat(4,1fr);
-gap:60px;
+gap:36px;
+max-width:1200px;
+margin:auto;
 }
 
+/* GLASS CARD */
 .metric{
 opacity:0;
 transform:translateY(50px);
-will-change:transform,opacity;
+.metric{
+max-width:260px;
+margin:auto;
 }
 
-.metric .icon{
+padding:32px 28px;   /* increase vertical space */
+min-height:180px;    /* controls card height */
+
+border-radius:18px;
+
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(14px);
+-webkit-backdrop-filter:blur(14px);
+
+border:1px solid rgba(255,255,255,0.12);
+
+box-shadow:
+0 20px 40px rgba(0,0,0,0.45),
+inset 0 1px 0 rgba(255,255,255,0.08);
+
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+/* inner row */
+.metric-row{
+display:grid;
+grid-template-columns:auto 1px auto;
+align-items:center;
+justify-content:center;
+column-gap:16px;
+}
+
+/* icon */
+.metric-icon{
 font-size:28px;
-margin-bottom:15px;
+width:32px;
+display:flex;
+justify-content:flex-end;
 }
 
-.metric h3{
-font-size:2.4rem;
-color:#10b981;
-margin-bottom:10px;
+/* separator */
+.metric-divider{
+width:1px;
+height:28px;
+background:rgba(255,255,255,0.35);
 }
 
-.metric p{
-opacity:0.75;
-font-size:0.95rem;
+/* number */
+.metric-number{
+font-size:2.3rem;
+font-weight:600;
+text-align:left;
+color:#34d399;
 }
 
+/* label */
+.metric-label{
+margin-top:12px;
+font-size:0.82rem;
+opacity:0.7;
+
+white-space:nowrap;
+}
+
+.metric-inner{
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+
+/* responsive */
 @media(max-width:1000px){
 .metric-grid{
 grid-template-columns:repeat(2,1fr);
@@ -374,51 +451,179 @@ and <span class="stakeholder">people who care</span>.
 <div class="metric-grid">
 
 <div class="metric">
-<div class="icon">🌱</div>
-<h3 data-count="14.2">0</h3>
-<p>Soil Carbon Increase (%)</p>
+
+<div class="metric-inner">
+
+<div class="metric-row">
+
+<div class="metric-icon">🌱</div>
+
+<div class="metric-divider"></div>
+
+<div class="metric-number" data-count="14.2">0</div>
+
+</div>
+
+<div class="metric-label">
+Soil Carbon Increase (%)
+</div>
+
+</div>
+
 </div>
 
 <div class="metric">
-<div class="icon">💧</div>
-<h3 data-count="14">0</h3>
-<p>Water Saved (Million Litres)</p>
+
+<div class="metric-inner">
+
+<div class="metric-row">
+
+<div class="metric-icon">💧</div>
+
+<div class="metric-divider"></div>
+
+<div class="metric-number" data-count="14">0</div>
+
+</div>
+
+<div class="metric-label">
+Water Saved (million liters)
+</div>
+
+</div>
+
 </div>
 
 <div class="metric">
-<div class="icon">🚫</div>
-<h3 data-count="0">0</h3>
-<p>Synthetic Chemical Usage (%)</p>
+
+<div class="metric-inner">
+
+<div class="metric-row">
+
+<div class="metric-icon">🌱</div>
+
+<div class="metric-divider"></div>
+
+<div class="metric-number" data-count="0">0</div>
+
+</div>
+
+<div class="metric-label">
+Synthetic Chemical Usage (%)
+</div>
+
+</div>
+
 </div>
 
 <div class="metric">
-<div class="icon">🌾</div>
-<h3 data-count="28">0</h3>
-<p>Heritage Crop Varieties Revived</p>
+
+<div class="metric-inner">
+
+<div class="metric-row">
+
+<div class="metric-icon">🌱</div>
+
+<div class="metric-divider"></div>
+
+<div class="metric-number" data-count="28">0</div>
+
+</div>
+
+<div class="metric-label">
+Heritage Crop Varieties Revived
+</div>
+
+</div>
+
 </div>
 
 <div class="metric">
-<div class="icon">👩‍🌾</div>
-<h3 data-count="120">0</h3>
-<p>Sovereign Farmers Integrated</p>
+
+<div class="metric-inner">
+
+<div class="metric-row">
+
+<div class="metric-icon">🌱</div>
+
+<div class="metric-divider"></div>
+
+<div class="metric-number" data-count="250">0</div>
+
+</div>
+
+<div class="metric-label">
+Sovereign Farmers Integrated
+</div>
+
+</div>
+
 </div>
 
 <div class="metric">
-<div class="icon">💰</div>
-<h3 data-count="100">0</h3>
-<p>Consumer Payment to Farmer (%)</p>
+
+<div class="metric-inner">
+
+<div class="metric-row">
+
+<div class="metric-icon">🌱</div>
+
+<div class="metric-divider"></div>
+
+<div class="metric-number" data-count="100">0</div>
+
+</div>
+
+<div class="metric-label">
+Consumer Payment to Farmer (%)
+</div>
+
+</div>
+
 </div>
 
 <div class="metric">
-<div class="icon">🏬</div>
-<h3 data-count="8">0</h3>
-<p>Operational Market Hubs</p>
+
+<div class="metric-inner">
+
+<div class="metric-row">
+
+<div class="metric-icon">🌱</div>
+
+<div class="metric-divider"></div>
+
+<div class="metric-number" data-count="15">0</div>
+
+</div>
+
+<div class="metric-label">
+Operational Market Hubs
+</div>
+
+</div>
+
 </div>
 
 <div class="metric">
-<div class="icon">👨‍👩‍👧‍👦</div>
-<h3 data-count="900">0</h3>
-<p>Verified Families Served</p>
+
+<div class="metric-inner">
+
+<div class="metric-row">
+
+<div class="metric-icon">🌱</div>
+
+<div class="metric-divider"></div>
+
+<div class="metric-number" data-count="1100">0</div>
+
+</div>
+
+<div class="metric-label">
+Verified Families Served
+</div>
+
+</div>
+
 </div>
 
 </div>
