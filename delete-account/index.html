@@ -1,67 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Delete Account | Prakrushi</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <style>
+
 body{
 font-family:'Inter',sans-serif;
-background:#061a15;
-color:#fff;
-padding:60px 8%;
+margin:0;
+
+background:
+linear-gradient(
+180deg,
+#629170 0%,
+#629170 100%
+);
+
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+/* page container */
+
+.delete-container{
+
+max-width:720px;
+width:90%;
+
+padding:50px;
+
+background:rgba(255,255,255,0.75);
+backdrop-filter:blur(10px);
+
+border-radius:20px;
+
+border:1px solid rgba(0,0,0,0.08);
+
+box-shadow:0 25px 50px rgba(0,0,0,0.15);
+
+color:#1b3a2c;
+
+}
+
+/* back button */
+
+.back-home{
+display:inline-block;
+margin-bottom:25px;
+
+color:#2f7f4f;
+text-decoration:none;
+
+font-weight:500;
+}
+
+.back-home:hover{
+text-decoration:underline;
+}
+
+/* headings */
+
+h1{
+margin-top:0;
+font-size:28px;
+}
+
+/* paragraph */
+
+p{
 line-height:1.7;
+margin-bottom:16px;
+opacity:.9;
 }
-h1{margin-bottom:20px;}
-.section{margin-bottom:40px;}
-a{color:#10b981;text-decoration:none;}
-.box{
-background:#0e1f1a;
-padding:30px;
-border-radius:12px;
+
+/* email */
+
+.email{
+font-weight:600;
+}
+
+/* delete button */
+
+.delete-btn{
+
+display:inline-block;
+
 margin-top:20px;
+
+background:#ff3b30;
+
+padding:12px 24px;
+
+border-radius:8px;
+
+text-decoration:none;
+
+color:white;
+
+font-weight:600;
+
 }
+
+.delete-btn:hover{
+opacity:.9;
+}
+
+/* note */
+
+.note{
+margin-top:20px;
+font-size:.9rem;
+opacity:.7;
+}
+
 </style>
+
 </head>
 
 <body>
 
-<h1>Delete Your Prakrushi Account</h1>
+<div class="delete-container">
 
-<div class="section">
-<p>If you wish to permanently delete your Prakrushi account, please follow the steps below.</p>
-</div>
+<a href="/" class="back-home">← Back to Home</a>
 
-<div class="section box">
-<h3>How to Request Deletion</h3>
-<p>Send an email from your registered email address to:</p>
-<p><strong>contact@prakrushi.in</strong></p>
-<p>Subject line: <strong>Account Deletion Request</strong></p>
-</div>
+<h1>Delete Your Account</h1>
 
-<div class="section box">
-<h3>What Happens After Request</h3>
-<ul>
-<li>Your account will be deactivated within 7 working days.</li>
-<li>Personal data will be permanently deleted within 30 days.</li>
-<li>Transaction records required for legal compliance may be retained as per applicable laws.</li>
-</ul>
-</div>
+<p>
+If you wish to permanently delete your Prakrushi account and associated personal data, you may request account deletion using the method below.
+</p>
 
-<div class="section box">
-<h3>Data That Will Be Deleted</h3>
-<ul>
-<li>Profile information</li>
-<li>Order history</li>
-<li>Farmer participation data</li>
-<li>App usage records linked to your account</li>
-</ul>
-</div>
+<p>
+Please send an email request from your registered email address to:
+</p>
 
-<div class="section">
-<p>If you face any issues, contact us at <a href="mailto:contact@prakrushi.in">contact@prakrushi.in</a></p>
+<p class="email">
+<a href="mailto:support@prakrushi.com">
+support@prakrushi.com
+</a>
+</p>
+
+<p>
+Our team will verify your identity and process the request within 7 working days.
+</p>
+
+<a class="delete-btn"
+href="mailto:support@prakrushi.com?subject=Account Deletion Request">
+
+Request Account Deletion
+
+</a>
+
+<p class="note">
+Account deletion is permanent and cannot be undone. Certain information may be retained where required by law or for fraud prevention purposes.
+</p>
+
 </div>
 
 </body>
+
 </html>
