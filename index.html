@@ -12,7 +12,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{
-font-family:'Inter',sans-serif;
+font-family:'Plus Jakarta Sans', sans-serif;
 color:#fff;
 overflow-x:hidden;
 background:#061a15;
@@ -124,15 +124,22 @@ nav .links.active{right:0}
 }
 
 /* HERO */
-.hero{
-height:100vh;
-display:flex;align-items:flex-end;justify-content:center;
-padding-bottom:20vh;text-align:center
-}
 
 .hero{
+height:100vh;
+display:flex;
+align-items:flex-end;
+justify-content:center;
+padding-bottom:16vh;
+text-align:center;
 position:relative;
 overflow:hidden;
+}
+
+.highlight{
+color:#34d399;
+font-weight:600;
+position:relative;
 }
 
 .hero video{
@@ -150,23 +157,57 @@ position:absolute;
 inset:0;
 z-index:-1;
 
-background:
-linear-gradient(
+background:linear-gradient(
 to bottom,
 rgba(0,0,0,.25) 0%,
 rgba(0,0,0,.35) 60%,
 rgba(0,0,0,.45) 100%
 );
 }
+
 .hero h1{
-width:80%;
+width:100%;
+max-width:1100px;
+margin:auto;
+
 font-size:clamp(2rem,4vw,4rem);
-line-height:1.2;margin:auto
+line-height:1.2;
+letter-spacing:0.02em;
+text-align:center;
 }
+
+.hero-line{
+display:block;
+white-space:nowrap;
+margin:0 auto;
+}
+
+.hero p{
+margin-top:20px;
+opacity:.85;
+}
+
 .hero .trust{color:#34d399}
 .hero .food{color:#22c55e}
 .hero .stakeholder{color:#86efac}
-.hero p{margin-top:20px;opacity:.85}
+
+#hero-typing{
+max-width:1100px;
+margin:auto;
+text-align:center;
+
+font-size:clamp(2rem,4vw,4rem);
+line-height:1.25;
+letter-spacing:0.03em;
+font-weight:500;
+
+min-height:2.6em;
+}
+
+.highlight{
+color:#34d399;
+font-weight:600;
+}
 
 /* ECOSYSTEM IMPACT */
 
@@ -266,13 +307,6 @@ font-size:20px;
 
 .node-divider{
 opacity:.4;
-}
-
-.metric-number{
-font-size:1.45rem;
-font-weight:700;
-color:#a7f3d0;
-letter-spacing:0.3px;
 }
 
 @keyframes spinRays{
@@ -430,65 +464,148 @@ animation:orbitFloat 6s ease-in-out infinite;
 100%{margin-top:0}
 }
 
-/* STORY */
-.story{
-height:200vh;position:relative;
-background:url("story.jpeg") center/cover no-repeat
-}
-.story-overlay{
-position:sticky;top:0;height:100vh;
-display:flex;align-items:center;justify-content:center;
-background:rgba(0,0,0,.6)
-}
-.story-content{
-max-width:700px;text-align:center;
-transform:scale(1.2);opacity:0
+/* HERO → IMPACT CINEMATIC FADE */
+
+.impact{
+opacity:0;
+transform:translateY(60px);
+transition:opacity 1.4s ease, transform 1.4s ease;
 }
 
+.impact.visible{
+opacity:1;
+transform:translateY(0);
+}
+
+/* STORY */
+
 .story{
-height:200vh;
 position:relative;
-background:#0a1f17;
+height:100vh;
 overflow:hidden;
 }
 
-#soilCanvas{
-position:absolute;
-inset:0;
-width:100%;
-height:100%;
-z-index:0;
+.story-track{
+display:flex;
+height:100vh;
 }
 
-.story-overlay{
-position:sticky;
-top:0;
+.story-panel{
+position:relative;
+flex:0 0 100vw;
 height:100vh;
 
 display:flex;
 align-items:center;
 justify-content:center;
 
-background:rgba(0,0,0,0.35);
-z-index:2;
+overflow:hidden;
 }
 
-.story-content{
-max-width:700px;
+.story-panel{
+display:flex;
+align-items:center;
+justify-content:center;
+padding:40px;
+}
+
+.story-panel::after{
+content:"";
+position:absolute;
+inset:0;
+
+background:linear-gradient(
+to bottom,
+rgba(0,0,0,0.15),
+rgba(0,0,0,0.25)
+);
+
+z-index:-1;
+}
+
+.story-img{
+position:absolute;
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+object-fit:cover;
+object-position:center center;
+
+z-index:-1;
+
+filter:brightness(0.9) contrast(1.05);
+}
+
+.story-text{
+
+width:560px;
+min-height:220px;
+
+padding:40px 50px;
+
+background:rgba(255,255,255,0.15);
+
+border-radius:24px;
+
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,0.35);
+
+box-shadow:0 30px 80px rgba(0,0,0,0.35);
+
+}
+
+.story-text h2{
+
+font-family:'Plus Jakarta Sans', sans-serif;
+
+font-size:24px;
+font-weight:600;
+
+line-height:1.35;
+
+letter-spacing:0.06em;   /* spacing between letters */
+
 text-align:center;
-opacity:0;
-transform:translateY(60px);
+
+margin-bottom:36px;
+
 }
 
-.story-content h2{
-font-size:2.2rem;
-margin-bottom:20px;
-}
+.story-text p{
 
-.story-content p{
-font-size:1.1rem;
-opacity:.85;
+font-size:16px;
+
 line-height:1.6;
+
+letter-spacing:0.04em;
+
+max-width:720px;
+
+margin:auto;
+
+text-align:center;
+
+}
+
+@keyframes heroGlow{
+
+0%{
+text-shadow:0 0 0 rgba(34,197,94,0);
+}
+
+50%{
+text-shadow:
+0 0 8px rgba(34,197,94,0.6),
+0 0 16px rgba(34,197,94,0.35);
+}
+
+100%{
+text-shadow:0 0 0 rgba(34,197,94,0);
+}
+
 }
 
 /* FARMS */
@@ -502,13 +619,67 @@ position:absolute;inset:0;width:100%;height:100%;
 object-fit:cover;z-index:-1
 }
 .farm-overlay{
-background:rgba(0,0,0,.6);
-padding:30px;border-radius:12px
+
+width:560px;
+min-height:220px;
+
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+
+padding:40px 50px;
+
+background:rgba(255,255,255,0.15);
+
+border-radius:24px;
+
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,0.35);
+
+box-shadow:0 30px 80px rgba(0,0,0,0.35);
+
+text-align:center;
+
 }
+
 .farm-overlay a{
 display:inline-block;margin-top:15px;
 padding:10px 20px;background:#10b981;
 color:#fff;border-radius:6px;text-decoration:none
+}
+
+.farm-overlay{
+text-decoration:none;
+color:#fff;
+}
+
+.farm-overlay h2,
+.farm-overlay p,
+.farm-overlay div{
+text-decoration:none;
+}
+
+.farm-link{
+
+margin-top:18px;
+
+font-size:15px;
+letter-spacing:0.05em;
+
+cursor:pointer;
+
+opacity:.85;
+
+transition:all .25s ease;
+
+}
+
+.farm-link:hover{
+
+opacity:1;
+transform:translateX(6px);
+
 }
 
 /* MARKET HUBS */
@@ -742,11 +913,16 @@ font-size:0.7rem;
 <source src="hero.mp4" type="video/mp4">
 </video>
 <div>
-<h1>
-<span class="trust">Trust</span> in <span class="food">food</span> begins with soil, patience,
-and <span class="stakeholder">people who care</span>.
+<h1 id="hero-typing">
+<span class="hero-line" id="line1"></span>
+<span class="hero-line" id="line2"></span>
 </h1>
-<p>Connecting farmers, families, ecology and sovereign markets.</p>
+<p>
+Connecting <span class="highlight">farmers</span>, 
+<span class="highlight">families</span>, 
+<span class="highlight">ecology</span> and 
+sovereign <span class="highlight">markets</span>.
+</p>
 </div>
 </section>
 
@@ -880,50 +1056,106 @@ and <span class="stakeholder">people who care</span>.
 <!-- STORY -->
 <section class="story" id="story">
 
-<canvas id="soilCanvas"></canvas>
+<div class="story-track">
 
-<div class="story-overlay">
-<div class="story-content">
+<div class="story-panel">
 
-<h2>Everything begins beneath our feet</h2>
+<img src="soil.jpg" class="story-img">
 
+<div class="story-text">
+<h2>EVERYTHING BEGINS IN SOIL</h2>
 <p>
-Before food becomes harvest,<br>
-before markets and families,<br>
-there is living soil.
+Clean produce begins long before it reaches the kitchen.
+It begins in soil, patience and honest effort.
 </p>
+</div>
 
 </div>
+
+<div class="story-panel farmer">
+
+<img src="farmer.jpg" class="story-img">
+
+<div class="story-text">
+<h2>FARMERS WHO CARE</h2>
+<p>
+Many farmers wish to farm responsibly.<br>
+They simply need people who value that effort.
+</p>
+</div>
+
+</div>
+
+<div class="story-panel knowledge">
+
+<img src="bee.jpg" class="story-img">
+
+<div class="story-text">
+<h2>LEARNING TRAVELS QUIETLY</h2>
+<p>
+Like the Honey Bee Network, knowledge flows gently from one farm to another.
+</p>
+</div>
+</div>
+
+<div class="story-panel family">
+
+<img src="family.jpg" class="story-img">
+
+<div class="story-text">
+<h2>WITH PRAKRUSHI<br>
+  TRUST RETURNS TO FOOD<br></h2>
+<p>
+When farmers and families reconnect,food regains meaning.
+
+</p>
+</div>
+</div>
+
 </div>
 
 </section>
 
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 <!-- FARMS -->
 <section class="farms" id="farms">
+
 <div class="farm-slide">
 <img src="farm1.jpeg">
-<div class="farm-overlay">
+
+<a href="farms.html" class="farm-overlay">
 <h2>Regenerative Fields</h2>
 <p>Living soil restored.</p>
-<a href="farms.html">View More</a>
+<div class="farm-link">Explore →</div>
+</a>
+
 </div>
-</div>
+
+
 <div class="farm-slide">
 <img src="farm2.jpg">
-<div class="farm-overlay">
+
+<a href="farms.html" class="farm-overlay">
 <h2>Community Farming</h2>
 <p>Collaborative knowledge systems.</p>
-<a href="farms.html">View More</a>
+<div class="farm-link">Explore →</div>
+</a>
+
 </div>
-</div>
+
+
 <div class="farm-slide">
 <img src="farm3.jpg">
-<div class="farm-overlay">
+
+<a href="farms.html" class="farm-overlay">
 <h2>Transparent Harvest</h2>
 <p>Traceable food ecosystem.</p>
-<a href="farms.html">View More</a>
+<div class="farm-link">Explore →</div>
+</a>
+
 </div>
-</div>
+
 </section>
 
 <!-- MARKET HUBS -->
@@ -1076,6 +1308,71 @@ Phone: +91 9XXXXXXXXX
 
 <script>
 
+/* HERO → IMPACT EMERGENCE */
+
+ScrollTrigger.create({
+trigger:".impact",
+start:"top 80%",
+onEnter:()=>{
+document.querySelector(".impact").classList.add("visible");
+}
+});
+
+/* STAGGER HERO WORD GLOW */
+
+gsap.from(".highlight",{
+opacity:0,
+y:20,
+stagger:0.25,
+duration:1.2,
+ease:"power2.out"
+});
+
+/* HERO TYPING */
+
+const line1 = "Trust in food begins with soil"
+const line2 = "patience, and people who care."
+
+const highlightWords = ["Trust","food","soil","patience","people"]
+
+let i = 0
+let j = 0
+let speed = 85
+
+function typeHero(){
+
+const l1 = document.getElementById("line1")
+const l2 = document.getElementById("line2")
+
+if(i < line1.length){
+
+l1.innerHTML += line1.charAt(i)
+i++
+setTimeout(typeHero,speed)
+
+}else if(j < line2.length){
+
+l2.innerHTML += line2.charAt(j)
+j++
+setTimeout(typeHero,speed)
+
+}else{
+
+let html = document.getElementById("hero-typing").innerHTML
+
+highlightWords.forEach(word=>{
+let regex = new RegExp(word,"g")
+html = html.replace(regex, `<span class="highlight">${word}</span>`)
+})
+
+document.getElementById("hero-typing").innerHTML = html
+
+}
+
+}
+
+window.addEventListener("load",typeHero)
+
 /* ================================
    MARKET HUBS – CINEMATIC PIN FLOW
 ================================ */
@@ -1194,20 +1491,6 @@ snap:{innerText:0.1}
    STORY – CINEMATIC DEPTH FLOW
 ================================ */
 
-gsap.registerPlugin(ScrollTrigger);
-
-/* Background parallax drift */
-gsap.to(".story", {
-  backgroundPosition: "50% 30%",
-  ease: "none",
-  scrollTrigger: {
-    trigger: ".story",
-    start: "top bottom",
-    end: "bottom top",
-    scrub: true
-  }
-});
-
 /* Content cinematic reveal */
 gsap.fromTo(".story-content",
   { scale: 1.25, opacity: 0, y: 80 },
@@ -1218,26 +1501,12 @@ gsap.fromTo(".story-content",
     ease: "power2.out",
     scrollTrigger: {
       trigger: ".story",
-      start: "top 60%",
-      end: "top 20%",
+      start: "top 75%",
+      end: "top 35%",
       scrub: true
     }
   }
 );
-
-gsap.fromTo(".story-content",
-{opacity:0,y:80},
-{
-opacity:1,
-y:0,
-ease:"power2.out",
-scrollTrigger:{
-trigger:".story",
-start:"top 60%",
-end:"top 20%",
-scrub:true
-}
-});
 
 /* Gentle fade out while exiting */
 gsap.to(".story-content", {
@@ -1255,71 +1524,30 @@ gsap.to(".story-content", {
 function toggleMenu(){
 document.querySelector(".links").classList.toggle("active");
 }
-</script>
 
-/* ==========================
-   LIVING SOIL MICROBIOME
-========================== */
+const panels = gsap.utils.toArray(".story-panel");
+const track = document.querySelector(".story-track");
 
-const canvas = document.getElementById("soilCanvas");
-const ctx = canvas.getContext("2d");
-
-let particles = [];
-
-function resizeCanvas(){
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-}
-
-resizeCanvas();
-window.addEventListener("resize", resizeCanvas);
-
-class Particle{
-constructor(){
-this.x = Math.random()*canvas.width;
-this.y = Math.random()*canvas.height;
-
-this.size = Math.random()*2+1;
-this.speedX = (Math.random()-0.5)*0.3;
-this.speedY = (Math.random()-0.5)*0.3;
-
-this.opacity = Math.random()*0.6+0.2;
-}
-
-update(){
-this.x += this.speedX;
-this.y += this.speedY;
-
-if(this.x<0 || this.x>canvas.width) this.speedX *= -1;
-if(this.y<0 || this.y>canvas.height) this.speedY *= -1;
-}
-
-draw(){
-ctx.beginPath();
-ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
-ctx.fillStyle = `rgba(120,255,180,${this.opacity})`;
-ctx.fill();
-}
-}
-
-for(let i=0;i<180;i++){
-particles.push(new Particle());
-}
-
-function animateSoil(){
-
-ctx.fillStyle="#081a14";
-ctx.fillRect(0,0,canvas.width,canvas.height);
-
-particles.forEach(p=>{
-p.update();
-p.draw();
+ScrollTrigger.create({
+  trigger: ".story",
+  start: "top top",
+  end: "+=" + (window.innerWidth * panels.length),
+  pin: true,
+  scrub: 1.5
 });
 
-requestAnimationFrame(animateSoil);
-}
+gsap.to(track,{
+  xPercent: -100 * (panels.length - 1),
+  ease: "none",
+  scrollTrigger:{
+    trigger:".story",
+    start:"top top",
+    end:"+=" + (window.innerWidth * panels.length),
+    scrub:1.5
+  }
+});
 
-animateSoil();
+</script>
 
 </body>
 </html>
