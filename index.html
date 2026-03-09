@@ -66,6 +66,16 @@ rgba(30,70,60,0.65) 65%,
 animation:ecosystemDrift 30s ease-in-out infinite;
 }
 
+@keyframes ecosystemPulse{
+0%{transform:scale(1)}
+50%{transform:scale(1.05)}
+100%{transform:scale(1)}
+}
+
+.ecosystem-orb{
+animation:ecosystemPulse 6s ease-in-out infinite;
+}
+
 /* NAV */
 nav{
 position:fixed;
@@ -154,7 +164,147 @@ line-height:1.2;margin:auto
 .hero .stakeholder{color:#86efac}
 .hero p{margin-top:20px;opacity:.85}
 
-/* IMPACT */
+/* ECOSYSTEM IMPACT */
+
+.ecosystem-wrapper{
+width:min(90vw,900px);
+height:620px;
+margin:auto;
+position:relative;
+}
+
+.ecosystem-center{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+text-align:center;
+
+radial-gradient(
+circle at center,
+rgba(90,140,90,0.25) 0%,
+rgba(60,110,70,0.35) 35%,
+rgba(30,70,60,0.55) 65%,
+#0a221c 90%,
+#061a15 100%
+);
+}
+
+.ecosystem-orb{
+width:140px;
+height:140px;
+border-radius:50%;
+
+background:radial-gradient(circle,#6ee7b7,#065f46);
+
+box-shadow:
+0 0 60px rgba(34,197,94,.6),
+0 0 120px rgba(34,197,94,.4);
+
+margin:auto;
+margin-bottom:10px;
+}
+
+.node{
+position:absolute;
+width:120px;
+text-align:center;
+}
+
+.metric-number{
+font-size:1.45rem;
+font-weight:700;
+color:#a7f3d0;
+letter-spacing:0.3px;
+}
+
+.node p{
+font-size:.82rem;
+opacity:.85;
+margin-top:8px;
+line-height:1.35;
+}
+
+.node-icon{
+font-size:22px;
+margin-bottom:6px;
+}
+
+.node-divider{
+opacity:.4;
+font-size:14px;
+margin:2px 0;
+}
+
+.node-row{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:8px;
+margin-bottom:6px;
+}
+
+.node-icon{
+font-size:20px;
+}
+
+.node-divider{
+opacity:.4;
+}
+
+.metric-number{
+font-size:1.45rem;
+font-weight:700;
+color:#a7f3d0;
+letter-spacing:0.3px;
+}
+
+@keyframes spinRays{
+from{transform:translate(-50%,-50%) rotate(0deg);}
+to{transform:translate(-50%,-50%) rotate(360deg);}
+}
+
+.ray{
+position:absolute;
+top:50%;
+left:50%;
+
+width:1px;
+height:210px;
+
+background:linear-gradient(
+to top,
+rgba(34,197,94,.35),
+rgba(34,197,94,.15),
+transparent
+);
+
+transform-origin:bottom center;
+}
+
+/* 8 directions */
+
+.r1{transform:translate(-50%,-100%) rotate(0deg);}
+.r2{transform:translate(-50%,-100%) rotate(45deg);}
+.r3{transform:translate(-50%,-100%) rotate(90deg);}
+.r4{transform:translate(-50%,-100%) rotate(135deg);}
+.r5{transform:translate(-50%,-100%) rotate(180deg);}
+.r6{transform:translate(-50%,-100%) rotate(225deg);}
+.r7{transform:translate(-50%,-100%) rotate(270deg);}
+.r8{transform:translate(-50%,-100%) rotate(315deg);}
+
+/* horizontal ecosystem layout with more spacing */
+
+.node1{top:-20px;left:18%;}
+.node2{top:-20px;left:50%;transform:translateX(-50%);}
+.node3{top:-20px;right:18%;}
+
+.node4{top:50%;right:2%;transform:translateY(-50%);}
+.node5{top:50%;left:2%;transform:translateY(-50%);}
+
+.node6{bottom:-20px;left:18%;}
+.node7{bottom:-20px;left:50%;transform:translateX(-50%);}
+.node8{bottom:-20px;right:18%;}
 
 .impact::after{
 content:"";
@@ -172,7 +322,7 @@ rgba(6,26,21,0),
 }
 
 .impact{
-min-height:120vh;
+min-height:100vh;
 display:flex;
 align-items:center;
 justify-content:center;
@@ -196,123 +346,14 @@ max-width:1200px;
 text-align:center;
 }
 
-.metric-grid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:36px;
-max-width:1200px;
-margin:auto;
+.node{
+animation:orbitFloat 6s ease-in-out infinite;
 }
 
-/* GLASS CARD */
-.metric{
-opacity:0;
-transform:translateY(50px);
-
-width:100%;
-height:200px;
-
-padding:32px 28px;
-
-border-radius:18px;
-
-background:rgba(255,255,255,0.18);
-backdrop-filter:blur(16px);
--webkit-backdrop-filter:blur(16px);
-
-border:1px solid rgba(255,255,255,0.25);
-
-box-shadow:
-0 15px 30px rgba(0,0,0,0.18),
-inset 0 1px 0 rgba(255,255,255,0.25);
-
-display:flex;
-align-items:center;
-justify-content:center;
-
-transition:all .25s ease;
-will-change:transform;
-}
-
-.metric:hover{
-transform:translateY(-10px) scale(1.02);
-box-shadow:
-0 28px 55px rgba(0,0,0,0.35),
-inset 0 1px 0 rgba(255,255,255,0.35);
-}
-
-/* inner row */
-.metric-row{
-display:grid;
-grid-template-columns:auto 1px auto;
-align-items:center;
-justify-content:center;
-column-gap:16px;
-}
-
-/* icon */
-.metric-icon{
-font-size:28px;
-width:32px;
-display:flex;
-justify-content:flex-end;
-}
-
-/* separator */
-.metric-divider{
-width:2px;
-height:26px;
-background:rgba(255,255,255,0.45);
-border-radius:2px;
-}
-
-/* number */
-.metric-number{
-color:#ffffff;
-font-size:2.6rem;
-font-weight:600;
-}
-
-/* label */
-.metric-label{
-color:#e8f5ec;
-opacity:.8;
-font-size:0.82rem;
-line-height:1;
-margin-top:4px;
-text-align:center;
-white-space:nowrap;
-}
-
-.metric-inner{
-display:flex;
-flex-direction:column;
-align-items:center;
-gap:6px;
-transition:transform .25s ease;
-}
-
-.metric:hover .metric-inner{
-transform:translateY(-6px);
-}
-
-.metric:hover{
-box-shadow:
-0 28px 55px rgba(0,0,0,0.35),
-inset 0 1px 0 rgba(255,255,255,0.35);
-}
-
-/* responsive */
-@media(max-width:1000px){
-.metric-grid{
-grid-template-columns:repeat(2,1fr);
-}
-}
-
-@media(max-width:600px){
-.metric-grid{
-grid-template-columns:1fr;
-}
+@keyframes orbitFloat{
+0%{margin-top:0}
+50%{margin-top:-4px}
+100%{margin-top:0}
 }
 
 /* STORY */
@@ -589,190 +630,128 @@ and <span class="stakeholder">people who care</span>.
 </div>
 </section>
 
-<!-- IMPACT -->
+<!-- ECOSYSTEM IMPACT -->
 <section class="impact" id="impact">
-<div class="impact-wrapper">
 
-<div class="metric-grid">
+<div class="ecosystem-wrapper">
 
-<div class="metric">
+<div class="ecosystem-center">
+<div class="ecosystem-orb"></div>
+<h2>Prakrushi</h2>
+<p>Impact Ecosystem</p>
+</div>
 
-<div class="metric-inner">
+<div class="node node1">
 
-<div class="metric-row">
+  <div class="node-row">
+    <span class="node-icon">🌱</span>
+    <span class="node-divider">|</span>
+    <span class="metric-number" data-count="14.2">0</span>
+  </div>
 
-<div class="metric-icon">🌱</div>
-
-<div class="metric-divider"></div>
-
-<div class="metric-number" data-count="14.2">0</div>
+  <p>Soil Carbon</p>
 
 </div>
 
-<div class="metric-label">
-Soil Carbon Increase (%)
-</div>
+<div class="node node2">
+
+  <div class="node-row">
+    <span class="node-icon">💧</span>
+    <span class="node-divider">|</span> 
+    <span class="metric-number" data-count="14">0</span>
+  </div>
+
+  <p>Water Saved</p>
 
 </div>
 
-</div>
+<div class="node node3">
 
-<div class="metric">
-
-<div class="metric-inner">
-
-<div class="metric-row">
-
-<div class="metric-icon">💧</div>
-
-<div class="metric-divider"></div>
-
-<div class="metric-number" data-count="14">0</div>
+  <div class="node-row">
+    <span class="node-icon">🧪</span>
+    <span class="node-divider">|</span>
+    <span class="metric-number" data-count="0">0</span>
+  </div>
+  
+  <p>Synthetic Chemicals</p>
 
 </div>
 
-<div class="metric-label">
-Water Saved (million liters)
-</div>
+<div class="node node4">
+
+  <div class="node-row">
+    <span class="node-icon">🌾</span>
+    <span class="node-divider">|</span>
+    <span class="metric-number" data-count="28">0</span>
+  </div>
+
+  <p>Heritage Crops</p>
 
 </div>
 
-</div>
+<div class="node node5">
 
-<div class="metric">
+  <div class="node-row">
+    <span class="node-icon">👨‍🌾</span>
+    <span class="node-divider">|</span>
+    <span class="metric-number" data-count="250">0</span>
+  </div>
 
-<div class="metric-inner">
-
-<div class="metric-row">
-
-<div class="metric-icon">🌱</div>
-
-<div class="metric-divider"></div>
-
-<div class="metric-number" data-count="0">0</div>
+  <p>Farmers Integrated</p>
 
 </div>
 
-<div class="metric-label">
-Synthetic Chemical Usage (%)
-</div>
+<div class="node node6">
+
+  <div class="node-row">
+    <span class="node-icon">💰</span>
+    <span class="node-divider">|</span>
+    <span class="metric-number" data-count="100">0</span>
+  </div>
+
+  <p>Payment to Farmers</p>
 
 </div>
 
-</div>
+<div class="node node7">
 
-<div class="metric">
+  <div class="node-row">
+    <span class="node-icon">🏪</span>
+    <span class="node-divider">|</span>  
+    <span class="metric-number" data-count="15">0</span>
+  </div>
 
-<div class="metric-inner">
-
-<div class="metric-row">
-
-<div class="metric-icon">🌱</div>
-
-<div class="metric-divider"></div>
-
-<div class="metric-number" data-count="28">0</div>
+  <p>Market Hubs</p>
 
 </div>
 
-<div class="metric-label">
-Heritage Crop Varieties Revived
-</div>
+<div class="node node8">
 
-</div>
+  <div class="node-row">
+    <span class="node-icon">👨‍👩‍👧</span>
+    <span class="node-divider">|</span>
+    <span class="metric-number" data-count="1100">0</span>
+  </div>
 
-</div>
-
-<div class="metric">
-
-<div class="metric-inner">
-
-<div class="metric-row">
-
-<div class="metric-icon">🌱</div>
-
-<div class="metric-divider"></div>
-
-<div class="metric-number" data-count="250">0</div>
-
-</div>
-
-<div class="metric-label">
-Sovereign Farmers Integrated
-</div>
+  <p>Families Served</p>
 
 </div>
 
 </div>
 
-<div class="metric">
+<div class="ecosystem-wrapper">
 
-<div class="metric-inner">
-
-<div class="metric-row">
-
-<div class="metric-icon">🌱</div>
-
-<div class="metric-divider"></div>
-
-<div class="metric-number" data-count="100">0</div>
-
+<div class="rays">
+<div class="ray r1"></div>
+<div class="ray r2"></div>
+<div class="ray r3"></div>
+<div class="ray r4"></div>
+<div class="ray r5"></div>
+<div class="ray r6"></div>
+<div class="ray r7"></div>
+<div class="ray r8"></div>
 </div>
 
-<div class="metric-label">
-Consumer Payment to Farmer (%)
-</div>
-
-</div>
-
-</div>
-
-<div class="metric">
-
-<div class="metric-inner">
-
-<div class="metric-row">
-
-<div class="metric-icon">🌱</div>
-
-<div class="metric-divider"></div>
-
-<div class="metric-number" data-count="15">0</div>
-
-</div>
-
-<div class="metric-label">
-Operational Market Hubs
-</div>
-
-</div>
-
-</div>
-
-<div class="metric">
-
-<div class="metric-inner">
-
-<div class="metric-row">
-
-<div class="metric-icon">🌱</div>
-
-<div class="metric-divider"></div>
-
-<div class="metric-number" data-count="1100">0</div>
-
-</div>
-
-<div class="metric-label">
-Verified Families Served
-</div>
-
-</div>
-
-</div>
-
-</div>
-</div>
 </section>
 
 <!-- STORY -->
@@ -1026,11 +1005,23 @@ window.addEventListener("load", () => {
 });
 
 /* Impact Stagger Reveal */
-gsap.utils.toArray(".metric").forEach((el,i)=>{
-gsap.to(el,{
-opacity:1,
-y:0,
-duration:0.8,
+
+const nodes = gsap.utils.toArray(".node");
+
+nodes.forEach((node,i)=>{
+
+let rect = node.getBoundingClientRect();
+let center = document.querySelector(".ecosystem-orb").getBoundingClientRect();
+
+let dx = center.left + center.width/2 - (rect.left + rect.width/2);
+let dy = center.top + center.height/2 - (rect.top + rect.height/2);
+
+gsap.from(node,{
+x:dx,
+y:dy,
+scale:0.2,
+opacity:0,
+duration:1.2,
 delay:i*0.15,
 ease:"power3.out",
 scrollTrigger:{
@@ -1038,6 +1029,14 @@ trigger:".impact",
 start:"top 70%"
 }
 });
+
+gsap.to(".node",{
+scale:1.05,
+duration:.6,
+repeat:1,
+yoyo:true,
+stagger:.15,
+delay:2.5
 });
 
 /* Sequential Counting */
