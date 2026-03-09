@@ -18,23 +18,6 @@ overflow-x:hidden;
 background:#061a15;
 }
 
-body::before{
-content:"";
-position:fixed;
-inset:0;
-z-index:-5;
-
-background:
-radial-gradient(
-circle at center,
-rgba(90,140,90,0.35) 0%,
-rgba(60,110,70,0.45) 35%,
-rgba(30,70,60,0.65) 65%,
-#0a221c 90%,
-#061a15 100%
-);
-}
-
 @keyframes ecosystemDrift{
 0%{
 transform:translate(0,0) scale(1);
@@ -50,7 +33,7 @@ transform:translate(0,0) scale(1);
 body::before{
 content:"";
 position:fixed;
-inset:-5%;
+inset:-6%;
 z-index:-5;
 
 background:
@@ -64,6 +47,7 @@ rgba(30,70,60,0.65) 65%,
 );
 
 animation:ecosystemDrift 30s ease-in-out infinite;
+will-change:transform;
 }
 
 @keyframes ecosystemPulse{
@@ -145,14 +129,34 @@ height:100vh;
 display:flex;align-items:flex-end;justify-content:center;
 padding-bottom:20vh;text-align:center
 }
-.hero video{
-position:absolute;inset:0;width:100%;height:100%;
-object-fit:cover;z-index:-2;filter:brightness(.6)
+
+.hero{
+position:relative;
+overflow:hidden;
 }
+
+.hero video{
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+object-fit:cover;
+z-index:-2;
+}
+
 .hero::after{
-content:"";position:absolute;inset:0;
-background:radial-gradient(circle at center,transparent 70%,rgba(0,0,0,.45) 100%);
-z-index:-1
+content:"";
+position:absolute;
+inset:0;
+z-index:-1;
+
+background:
+linear-gradient(
+to bottom,
+rgba(0,0,0,.25) 0%,
+rgba(0,0,0,.35) 60%,
+rgba(0,0,0,.45) 100%
+);
 }
 .hero h1{
 width:80%;
@@ -167,8 +171,8 @@ line-height:1.2;margin:auto
 /* ECOSYSTEM IMPACT */
 
 .ecosystem-wrapper{
-width:min(90vw,900px);
-height:620px;
+width:min(92vw,1050px);
+height:540px;
 margin:auto;
 position:relative;
 }
@@ -178,36 +182,48 @@ position:absolute;
 top:50%;
 left:50%;
 transform:translate(-50%,-50%);
-text-align:center;
-
-radial-gradient(
-circle at center,
-rgba(90,140,90,0.25) 0%,
-rgba(60,110,70,0.35) 35%,
-rgba(30,70,60,0.55) 65%,
-#0a221c 90%,
-#061a15 100%
-);
+display:flex;
+flex-direction:column;
+align-items:center;
 }
 
 .ecosystem-orb{
-width:140px;
-height:140px;
+width:200px;
+height:200px;
 border-radius:50%;
+
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+text-align:center;
 
 background:radial-gradient(circle,#6ee7b7,#065f46);
 
 box-shadow:
-0 0 60px rgba(34,197,94,.6),
-0 0 120px rgba(34,197,94,.4);
+0 0 45px rgba(34,197,94,.45),
+0 0 70px rgba(34,197,94,.25);
 
-margin:auto;
-margin-bottom:10px;
+font-weight:600;
+}
+
+.ecosystem-orb h2{
+font-size:1.4rem;
+margin-bottom:4px;
+}
+
+.ecosystem-orb p{
+font-size:.85rem;
+opacity:.8;
+}
+
+.ecosystem-lines path{
+animation:rootPulse 4s ease-in-out infinite;
 }
 
 .node{
 position:absolute;
-width:120px;
+width:180px;
 text-align:center;
 }
 
@@ -264,79 +280,137 @@ from{transform:translate(-50%,-50%) rotate(0deg);}
 to{transform:translate(-50%,-50%) rotate(360deg);}
 }
 
-.ray{
+@keyframes rayPulse{
+0%{opacity:.3}
+50%{opacity:.7}
+100%{opacity:.3}
+}
+
+.rays{
 position:absolute;
 top:50%;
 left:50%;
-
+transform:translate(-50%,-50%);
 width:1px;
-height:210px;
+height:1px;
+pointer-events:none;
+z-index:1;
+}
+
+.ray{
+position:absolute;
+bottom:0;
+left:-1px;
+width:2px;
+height:235px;
 
 background:linear-gradient(
 to top,
-rgba(34,197,94,.35),
-rgba(34,197,94,.15),
-transparent
+rgba(120,255,180,.45) 0%,
+rgba(120,255,180,.35) 55%,
+rgba(120,255,180,.18) 75%,
+transparent 100%
 );
 
 transform-origin:bottom center;
+animation:rayPulse 4s ease-in-out infinite;
+
+filter:drop-shadow(0 0 6px rgba(34,197,94,.35));
+}
+
+.ecosystem-center{
+z-index:2;
+}
+
+.node{
+z-index:3;
+}
+
+.ray{
+filter:drop-shadow(0 0 6px rgba(34,197,94,.4));
 }
 
 /* 8 directions */
 
-.r1{transform:translate(-50%,-100%) rotate(0deg);}
-.r2{transform:translate(-50%,-100%) rotate(45deg);}
-.r3{transform:translate(-50%,-100%) rotate(90deg);}
-.r4{transform:translate(-50%,-100%) rotate(135deg);}
-.r5{transform:translate(-50%,-100%) rotate(180deg);}
-.r6{transform:translate(-50%,-100%) rotate(225deg);}
-.r7{transform:translate(-50%,-100%) rotate(270deg);}
-.r8{transform:translate(-50%,-100%) rotate(315deg);}
+.r1{transform:rotate(0deg)}
+.r2{transform:rotate(45deg)}
+.r3{transform:rotate(90deg)}
+.r4{transform:rotate(135deg)}
+.r5{transform:rotate(180deg)}
+.r6{transform:rotate(225deg)}
+.r7{transform:rotate(270deg)}
+.r8{transform:rotate(315deg)}
 
-/* horizontal ecosystem layout with more spacing */
+/* nodes aligned with rays */
 
-.node1{top:-20px;left:18%;}
-.node2{top:-20px;left:50%;transform:translateX(-50%);}
-.node3{top:-20px;right:18%;}
-
-.node4{top:50%;right:2%;transform:translateY(-50%);}
-.node5{top:50%;left:2%;transform:translateY(-50%);}
-
-.node6{bottom:-20px;left:18%;}
-.node7{bottom:-20px;left:50%;transform:translateX(-50%);}
-.node8{bottom:-20px;right:18%;}
-
-.impact::after{
-content:"";
-position:absolute;
-top:-120px;
-left:0;
-right:0;
-height:120px;
-
-background:linear-gradient(
-to bottom,
-rgba(6,26,21,0),
-#061a15
-);
+.node2{
+top:-2%;
+left:50%;
+transform:translateX(-50%);
 }
 
+.node3{
+top:15%;
+right:15%;
+}
+
+.node4{
+top:50%;
+right:-2%;
+transform:translateY(-50%);
+}
+
+.node8{
+bottom:15%;
+right:15%;
+}
+
+.node7{
+bottom:-2%;
+left:50%;
+transform:translateX(-50%);
+}
+
+.node6{
+bottom:15%;
+left:15%;
+}
+
+.node5{
+top:50%;
+left:-2%;
+transform:translateY(-50%);
+}
+
+.node1{
+top:15%;
+left:15%;
+}
+
+
 .impact{
+margin-top: -1px;
 min-height:100vh;
 display:flex;
 align-items:center;
 justify-content:center;
-padding:140px 8%;
+padding:100px 8%;
 position:relative;
-overflow:hidden;
+overflow:visible;
 }
 
 .impact::before{
 content:"";
 position:absolute;
 inset:0;
+
 background:
-radial-gradient(circle at 40% 40%, rgba(170,190,90,0.15), transparent 60%);
+radial-gradient(
+circle at center,
+rgba(34,197,94,.12),
+transparent 70%
+);
+
 pointer-events:none;
 }
 
@@ -352,7 +426,7 @@ animation:orbitFloat 6s ease-in-out infinite;
 
 @keyframes orbitFloat{
 0%{margin-top:0}
-50%{margin-top:-4px}
+50%{margin-top:-6px}
 100%{margin-top:0}
 }
 
@@ -369,6 +443,52 @@ background:rgba(0,0,0,.6)
 .story-content{
 max-width:700px;text-align:center;
 transform:scale(1.2);opacity:0
+}
+
+.story{
+height:200vh;
+position:relative;
+background:#0a1f17;
+overflow:hidden;
+}
+
+#soilCanvas{
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+z-index:0;
+}
+
+.story-overlay{
+position:sticky;
+top:0;
+height:100vh;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+background:rgba(0,0,0,0.35);
+z-index:2;
+}
+
+.story-content{
+max-width:700px;
+text-align:center;
+opacity:0;
+transform:translateY(60px);
+}
+
+.story-content h2{
+font-size:2.2rem;
+margin-bottom:20px;
+}
+
+.story-content p{
+font-size:1.1rem;
+opacity:.85;
+line-height:1.6;
 }
 
 /* FARMS */
@@ -636,112 +756,16 @@ and <span class="stakeholder">people who care</span>.
 <div class="ecosystem-wrapper">
 
 <div class="ecosystem-center">
-<div class="ecosystem-orb"></div>
-<h2>Prakrushi</h2>
+
+<div class="ecosystem-orb">
+<h2>prakrushi</h2>
 <p>Impact Ecosystem</p>
 </div>
 
-<div class="node node1">
-
-  <div class="node-row">
-    <span class="node-icon">🌱</span>
-    <span class="node-divider">|</span>
-    <span class="metric-number" data-count="14.2">0</span>
-  </div>
-
-  <p>Soil Carbon</p>
-
 </div>
-
-<div class="node node2">
-
-  <div class="node-row">
-    <span class="node-icon">💧</span>
-    <span class="node-divider">|</span> 
-    <span class="metric-number" data-count="14">0</span>
-  </div>
-
-  <p>Water Saved</p>
-
-</div>
-
-<div class="node node3">
-
-  <div class="node-row">
-    <span class="node-icon">🧪</span>
-    <span class="node-divider">|</span>
-    <span class="metric-number" data-count="0">0</span>
-  </div>
-  
-  <p>Synthetic Chemicals</p>
-
-</div>
-
-<div class="node node4">
-
-  <div class="node-row">
-    <span class="node-icon">🌾</span>
-    <span class="node-divider">|</span>
-    <span class="metric-number" data-count="28">0</span>
-  </div>
-
-  <p>Heritage Crops</p>
-
-</div>
-
-<div class="node node5">
-
-  <div class="node-row">
-    <span class="node-icon">👨‍🌾</span>
-    <span class="node-divider">|</span>
-    <span class="metric-number" data-count="250">0</span>
-  </div>
-
-  <p>Farmers Integrated</p>
-
-</div>
-
-<div class="node node6">
-
-  <div class="node-row">
-    <span class="node-icon">💰</span>
-    <span class="node-divider">|</span>
-    <span class="metric-number" data-count="100">0</span>
-  </div>
-
-  <p>Payment to Farmers</p>
-
-</div>
-
-<div class="node node7">
-
-  <div class="node-row">
-    <span class="node-icon">🏪</span>
-    <span class="node-divider">|</span>  
-    <span class="metric-number" data-count="15">0</span>
-  </div>
-
-  <p>Market Hubs</p>
-
-</div>
-
-<div class="node node8">
-
-  <div class="node-row">
-    <span class="node-icon">👨‍👩‍👧</span>
-    <span class="node-divider">|</span>
-    <span class="metric-number" data-count="1100">0</span>
-  </div>
-
-  <p>Families Served</p>
-
-</div>
-
-</div>
-
-<div class="ecosystem-wrapper">
 
 <div class="rays">
+
 <div class="ray r1"></div>
 <div class="ray r2"></div>
 <div class="ray r3"></div>
@@ -750,18 +774,128 @@ and <span class="stakeholder">people who care</span>.
 <div class="ray r6"></div>
 <div class="ray r7"></div>
 <div class="ray r8"></div>
+
+</div>
+
+<div class="node node5">
+
+  <div class="node-row">
+    <span class="node-icon">🌱</span>
+    <span class="node-divider">|</span>
+    <span class="metric-number" data-count="14.2">0</span>
+  </div>
+
+  <p>Soil Carbon Restored</p>
+
+</div>
+
+<div class="node node1">
+
+  <div class="node-row">
+    <span class="node-icon">💧</span>
+    <span class="node-divider">|</span> 
+    <span class="metric-number" data-count="14">0</span>
+  </div>
+
+  <p>Water Conserved</p>
+
+</div>
+
+<div class="node node2">
+
+  <div class="node-row">
+    <span class="node-icon">🧪</span>
+    <span class="node-divider">|</span>
+    <span class="metric-number" data-count="0">0</span>
+  </div>
+  
+  <p>Synthetic Chemicals Eliminated</p>
+
+</div>
+
+<div class="node node3">
+
+  <div class="node-row">
+    <span class="node-icon">🌾</span>
+    <span class="node-divider">|</span>
+    <span class="metric-number" data-count="28">0</span>
+  </div>
+
+  <p>Indigenous Heritage Crops Revived</p>
+
+</div>
+
+<div class="node node8">
+
+  <div class="node-row">
+    <span class="node-icon">👨‍🌾</span>
+    <span class="node-divider">|</span>
+    <span class="metric-number" data-count="250">0</span>
+  </div>
+
+  <p>Farmers Integrated into Ecosystem</p>
+
+</div>
+
+<div class="node node7">
+
+  <div class="node-row">
+    <span class="node-icon">💰</span>
+    <span class="node-divider">|</span>
+    <span class="metric-number" data-count="100">0</span>
+  </div>
+
+  <p>Direct Payments to Farmers</p>
+
+</div>
+
+<div class="node node6">
+
+  <div class="node-row">
+    <span class="node-icon">🏪</span>
+    <span class="node-divider">|</span>  
+    <span class="metric-number" data-count="15">0</span>
+  </div>
+
+  <p>Decentralized Market Hubs</p>
+
+</div>
+
+<div class="node node4">
+
+  <div class="node-row">
+    <span class="node-icon">👨‍👩‍👧</span>
+    <span class="node-divider">|</span>
+    <span class="metric-number" data-count="1100">0</span>
+  </div>
+
+  <p>Families Nourished</p>
+
+</div>
+
 </div>
 
 </section>
 
 <!-- STORY -->
 <section class="story" id="story">
+
+<canvas id="soilCanvas"></canvas>
+
 <div class="story-overlay">
 <div class="story-content">
-<h2>Our Story</h2>
-<p>Regenerating soil. Empowering farmers. Serving families with trust.</p>
+
+<h2>Everything begins beneath our feet</h2>
+
+<p>
+Before food becomes harvest,<br>
+before markets and families,<br>
+there is living soil.
+</p>
+
 </div>
 </div>
+
 </section>
 
 <!-- FARMS -->
@@ -1006,6 +1140,12 @@ window.addEventListener("load", () => {
 
 /* Impact Stagger Reveal */
 
+ScrollTrigger.create({
+trigger:".impact",
+start:"top 70%",
+once:true,
+onEnter:()=>{
+
 const nodes = gsap.utils.toArray(".node");
 
 nodes.forEach((node,i)=>{
@@ -1023,20 +1163,12 @@ scale:0.2,
 opacity:0,
 duration:1.2,
 delay:i*0.15,
-ease:"power3.out",
-scrollTrigger:{
-trigger:".impact",
-start:"top 70%"
-}
+ease:"power3.out"
 });
 
-gsap.to(".node",{
-scale:1.05,
-duration:.6,
-repeat:1,
-yoyo:true,
-stagger:.15,
-delay:2.5
+});
+
+}
 });
 
 /* Sequential Counting */
@@ -1093,6 +1225,20 @@ gsap.fromTo(".story-content",
   }
 );
 
+gsap.fromTo(".story-content",
+{opacity:0,y:80},
+{
+opacity:1,
+y:0,
+ease:"power2.out",
+scrollTrigger:{
+trigger:".story",
+start:"top 60%",
+end:"top 20%",
+scrub:true
+}
+});
+
 /* Gentle fade out while exiting */
 gsap.to(".story-content", {
   opacity: 0,
@@ -1110,6 +1256,70 @@ function toggleMenu(){
 document.querySelector(".links").classList.toggle("active");
 }
 </script>
+
+/* ==========================
+   LIVING SOIL MICROBIOME
+========================== */
+
+const canvas = document.getElementById("soilCanvas");
+const ctx = canvas.getContext("2d");
+
+let particles = [];
+
+function resizeCanvas(){
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+}
+
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
+
+class Particle{
+constructor(){
+this.x = Math.random()*canvas.width;
+this.y = Math.random()*canvas.height;
+
+this.size = Math.random()*2+1;
+this.speedX = (Math.random()-0.5)*0.3;
+this.speedY = (Math.random()-0.5)*0.3;
+
+this.opacity = Math.random()*0.6+0.2;
+}
+
+update(){
+this.x += this.speedX;
+this.y += this.speedY;
+
+if(this.x<0 || this.x>canvas.width) this.speedX *= -1;
+if(this.y<0 || this.y>canvas.height) this.speedY *= -1;
+}
+
+draw(){
+ctx.beginPath();
+ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
+ctx.fillStyle = `rgba(120,255,180,${this.opacity})`;
+ctx.fill();
+}
+}
+
+for(let i=0;i<180;i++){
+particles.push(new Particle());
+}
+
+function animateSoil(){
+
+ctx.fillStyle="#081a14";
+ctx.fillRect(0,0,canvas.width,canvas.height);
+
+particles.forEach(p=>{
+p.update();
+p.draw();
+});
+
+requestAnimationFrame(animateSoil);
+}
+
+animateSoil();
 
 </body>
 </html>
