@@ -6,6 +6,7 @@
 <title>Prakrushi | Sovereign Agriculture</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
 
@@ -130,7 +131,7 @@ height:100vh;
 display:flex;
 align-items:flex-end;
 justify-content:center;
-padding-bottom:16vh;
+padding-bottom:8vh;
 text-align:center;
 position:relative;
 overflow:hidden;
@@ -198,15 +199,19 @@ text-align:center;
 
 font-size:clamp(2rem,4vw,4rem);
 line-height:1.25;
-letter-spacing:0.03em;
+letter-spacing:0.04em;
 font-weight:500;
 
 min-height:2.6em;
 }
 
-.highlight{
-color:#34d399;
-font-weight:600;
+@keyframes blink{
+0%,100%{opacity:0}
+50%{opacity:1}
+}
+
+.typing-done::after{
+display:none;
 }
 
 /* ECOSYSTEM IMPACT */
@@ -216,6 +221,7 @@ width:min(92vw,1050px);
 height:540px;
 margin:auto;
 position:relative;
+overflow:visible;
 }
 
 .ecosystem-center{
@@ -249,8 +255,9 @@ font-weight:600;
 }
 
 .ecosystem-orb h2{
-font-size:1.4rem;
-margin-bottom:4px;
+font-size:1.45rem;
+letter-spacing:0.08em;
+margin-bottom:6px;
 }
 
 .ecosystem-orb p{
@@ -269,17 +276,18 @@ text-align:center;
 }
 
 .metric-number{
-font-size:1.45rem;
+font-size:1.5rem;
 font-weight:700;
 color:#a7f3d0;
-letter-spacing:0.3px;
+letter-spacing:0.08em;
 }
 
 .node p{
 font-size:.82rem;
 opacity:.85;
-margin-top:8px;
-line-height:1.35;
+margin-top:10px;
+line-height:1.5;
+letter-spacing:0.04em;
 }
 
 .node-icon{
@@ -297,9 +305,11 @@ margin:2px 0;
 display:flex;
 align-items:center;
 justify-content:center;
-gap:8px;
-margin-bottom:6px;
+gap:10px;
+margin-bottom:8px;
+letter-spacing:0.2em;
 }
+
 
 .node-icon{
 font-size:20px;
@@ -400,7 +410,7 @@ right:15%;
 }
 
 .node7{
-bottom:-2%;
+bottom:2%;
 left:50%;
 transform:translateX(-50%);
 }
@@ -412,7 +422,7 @@ left:15%;
 
 .node5{
 top:50%;
-left:-2%;
+left:2%;
 transform:translateY(-50%);
 }
 
@@ -428,7 +438,7 @@ min-height:100vh;
 display:flex;
 align-items:center;
 justify-content:center;
-padding:100px 8%;
+padding:0 8%;
 position:relative;
 overflow:visible;
 }
@@ -481,13 +491,15 @@ transform:translateY(0);
 
 .story{
 position:relative;
-height:100vh;
-overflow:hidden;
+height:auto;
+overflow:visible;
+margin-top:80px;
 }
 
 .story-track{
 display:flex;
 height:100vh;
+will-change:transform;
 }
 
 .story-panel{
@@ -500,13 +512,9 @@ align-items:center;
 justify-content:center;
 
 overflow:hidden;
-}
 
-.story-panel{
-display:flex;
-align-items:center;
-justify-content:center;
-padding:40px;
+z-index:0;
+isolation:isolate;
 }
 
 .story-panel::after{
@@ -517,7 +525,7 @@ inset:0;
 background:linear-gradient(
 to bottom,
 rgba(0,0,0,0.15),
-rgba(0,0,0,0.25)
+rgba(0,0,0,0.18)
 );
 
 z-index:-1;
@@ -527,16 +535,14 @@ z-index:-1;
 position:absolute;
 top:0;
 left:0;
-
 width:100%;
 height:100%;
-
 object-fit:cover;
-object-position:center center;
 
-z-index:-1;
+z-index:-2;
 
 filter:brightness(0.9) contrast(1.05);
+will-change:transform;
 }
 
 .story-text{
@@ -554,6 +560,9 @@ backdrop-filter:blur(20px);
 border:1px solid rgba(255,255,255,0.35);
 
 box-shadow:0 30px 80px rgba(0,0,0,0.35);
+
+position:relative;
+z-index:2;
 
 }
 
@@ -682,79 +691,187 @@ transform:translateX(6px);
 
 }
 
-/* MARKET HUBS */
+/* MARKET ECOSYSTEM */
+
 .markets{
-padding:200px 0;
+min-height:100vh;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:40px;
 position:relative;
+}
+
+.market-map{
+position:relative;
+width:900px;
+height:600px;
 }
 
 .markets-title{
-text-align:center;
-font-size:2.8rem;
-margin-bottom:120px;
+margin:0;
 }
 
-.road-wrapper{
-position:relative;
-width:4px;
-margin:0 auto;
-min-height:1600px;
-}
+/* cities */
 
-.road-line{
-width:4px;
-height:0;
-background:linear-gradient(#888,#333);
+.city{
 position:absolute;
-left:0;
-top:0;
-}
-
-.hub-block{
-position:relative;
+font-size:18px;
+letter-spacing:.08em;
 opacity:0;
-margin:160px 0;
-transform:translateY(40px);
-will-change:transform,opacity;
+transform:translateY(20px);
 }
 
-.hub-dot{
-width:16px;
-height:16px;
-background:#10b981;
-border-radius:50%;
+/* north */
+
+.himmatnagar{
+top:40px;
+left:470px;
+}
+
+.gandhinagar{
+top:120px;
+left:420px;
+}
+
+/* ahmedabad core */
+
+.ahmedabad-row{
 position:absolute;
-left:-6px;
-top:0;
+top:240px;
+left:260px;
+display:flex;
+align-items:center;
+gap:20px;
 }
 
-.proposed .hub-dot{
-background:#888;
+.market-ahmedabad{
+font-weight:600;
+font-size:20px;
 }
 
-.hub-content{
-margin-left:60px;
-max-width:500px;
-}
+/* tags */
 
-.hub-content h3{
-font-size:1.6rem;
-margin-bottom:20px;
+.tags{
+display:flex;
+gap:10px;
 }
 
 .tags span{
-display:inline-block;
-background:rgba(16,185,129,0.1);
-border:1px solid rgba(16,185,129,0.4);
-padding:6px 12px;
-margin:6px 8px 6px 0;
+border:1px solid rgba(255,255,255,0.3);
+padding:4px 10px;
 border-radius:20px;
-font-size:0.8rem;
+font-size:13px;
+opacity:.9;
 }
 
-.proposed .tags span{
-border-color:#777;
-background:rgba(200,200,200,0.08);
+/* south */
+
+.anand{
+top:330px;
+left:420px;
+}
+
+.vadodara{
+top:420px;
+left:390px;
+}
+
+.surat{
+top:500px;
+left:360px;
+opacity:.5;
+}
+
+.map-container{
+position:relative;
+width:900px;
+height:600px;
+margin:auto;
+}
+
+.gujarat-map{
+position:absolute;
+width:100%;
+opacity:.15;
+filter:brightness(1.2);
+}
+
+.market-node{
+position:absolute;
+font-size:16px;
+opacity:0;
+}
+
+/* Ahmedabad center */
+
+.market-ahmedabad{
+top:300px;
+left:440px;
+font-weight:600;
+}
+
+/* hubs */
+
+.tags{
+position:absolute;
+top:300px;
+left:520px;
+display:flex;
+gap:10px;
+}
+
+.tags span{
+border:1px solid rgba(255,255,255,.3);
+padding:4px 10px;
+border-radius:20px;
+font-size:12px;
+opacity:0;
+}
+
+/* north */
+
+.gandhinagar{
+top:210px;
+left:470px;
+}
+
+.himmatnagar{
+top:120px;
+left:500px;
+}
+
+/* south */
+
+.anand{
+top:380px;
+left:430px;
+}
+
+.vadodara{
+top:450px;
+left:420px;
+}
+
+.surat{
+top:520px;
+left:410px;
+opacity:.5;
+}
+
+/* animated routes */
+
+.routes{
+position:absolute;
+width:100%;
+height:100%;
+pointer-events:none;
+}
+
+.routes path{
+stroke-dasharray:1000;
+stroke-dashoffset:1000;
 }
 
 /* JOURNAL */
@@ -1116,8 +1233,6 @@ When farmers and families reconnect,food regains meaning.
 
 </section>
 
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
 <!-- FARMS -->
 <section class="farms" id="farms">
 
@@ -1158,74 +1273,53 @@ When farmers and families reconnect,food regains meaning.
 
 </section>
 
-<!-- MARKET HUBS -->
+<!-- MARKET HUB ECOSYSTEM -->
+
 <section class="markets" id="markets">
 
-<h2 class="markets-title">Market Hubs</h2>
+<h2 class="markets-title">Market Ecosystem</h2>
 
-<div class="road-wrapper">
-
-<div class="road-line"></div>
+<div class="map-container">
 
 <!-- Ahmedabad -->
-<div class="hub-block" id="hub1">
-<div class="hub-dot"></div>
-<div class="hub-content">
-<h3>Ahmedabad</h3>
+<div class="market-node market-ahmedabad">Ahmedabad</div>
+
 <div class="tags">
-<span>NAVJIVAN</span>
-<span>SOLA</span>
+<span>Navjivan</span>
+<span>Sola</span>
 <span>BAOU</span>
-<span>PALODIYA</span>
-</div>
-</div>
+<span>Palodiya</span>
 </div>
 
-<!-- Gandhinagar -->
-<div class="hub-block" id="hub2">
-<div class="hub-dot"></div>
-<div class="hub-content">
-<h3>Gandhinagar</h3>
-<div class="tags">
-<span>Kadi College</span>
-</div>
-</div>
-</div>
+<!-- North -->
+<div class="market-node gandhinagar">Gandhinagar</div>
+<div class="market-node himmatnagar">Himmatnagar</div>
 
-<!-- Anand -->
-<div class="hub-block" id="hub3">
-<div class="hub-dot"></div>
-<div class="hub-content">
-<h3>Anand</h3>
-<div class="tags">
-<span>Active Hub</span>
-</div>
-</div>
-</div>
+<!-- South -->
+<div class="market-node anand">Anand</div>
+<div class="market-node vadodara">Vadodara</div>
+<div class="market-node surat proposed">Surat</div>
 
-<!-- Vadodara -->
-<div class="hub-block" id="hub4">
-<div class="hub-dot"></div>
-<div class="hub-content">
-<h3>Vadodara</h3>
-<div class="tags">
-<span>Active Hub</span>
-</div>
-</div>
-</div>
+<svg class="routes" viewBox="0 0 900 600">
 
-<!-- Surat Proposed -->
-<div class="hub-block proposed" id="hub5">
-<div class="hub-dot"></div>
-<div class="hub-content">
-<h3>Surat</h3>
-<div class="tags">
-<span>Proposed Location</span>
-</div>
-</div>
-</div>
+<path id="northRoute"
+d="M450 300 L470 200 L500 120"
+stroke="#34d399"
+stroke-width="2"
+fill="none"
+/>
+
+<path id="southRoute"
+d="M450 300 L430 380 L420 450 L410 520"
+stroke="#34d399"
+stroke-width="2"
+fill="none"
+/>
+
+</svg>
 
 </div>
+
 </section>
 
 <!-- JOURNAL -->
@@ -1318,17 +1412,7 @@ document.querySelector(".impact").classList.add("visible");
 }
 });
 
-/* STAGGER HERO WORD GLOW */
-
-gsap.from(".highlight",{
-opacity:0,
-y:20,
-stagger:0.25,
-duration:1.2,
-ease:"power2.out"
-});
-
-/* HERO TYPING */
+/* HERO LETTER TYPING */
 
 const line1 = "Trust in food begins with soil"
 const line2 = "patience, and people who care."
@@ -1337,7 +1421,7 @@ const highlightWords = ["Trust","food","soil","patience","people"]
 
 let i = 0
 let j = 0
-let speed = 85
+let speed = 120
 
 function typeHero(){
 
@@ -1350,13 +1434,15 @@ l1.innerHTML += line1.charAt(i)
 i++
 setTimeout(typeHero,speed)
 
-}else if(j < line2.length){
+}
+else if(j < line2.length){
 
 l2.innerHTML += line2.charAt(j)
 j++
 setTimeout(typeHero,speed)
 
-}else{
+}
+else{
 
 let html = document.getElementById("hero-typing").innerHTML
 
@@ -1371,155 +1457,102 @@ document.getElementById("hero-typing").innerHTML = html
 
 }
 
-window.addEventListener("load",typeHero)
+window.addEventListener("load", typeHero)
+
+/* MARKET ECOSYSTEM FLOW */
+
+gsap.registerPlugin(ScrollTrigger)
+
+gsap.set(".market-node",{opacity:0})
+gsap.set("#markets .tags span",{opacity:0})
+gsap.set("#northRoute",{strokeDashoffset:1000})
+gsap.set("#southRoute",{strokeDashoffset:1000})
+
+let tl = gsap.timeline({
+scrollTrigger:{
+trigger:"#markets",
+start:"top 80%",
+end:"+=1800",
+scrub:1,
+pin:true
+}
+})
+
+tl
+
+.to(".market-ahmedabad",{opacity:1})
+
+.to("#markets .tags span",{opacity:1,stagger:.2})
+
+.to("#northRoute",{strokeDashoffset:0})
+
+.to(".gandhinagar",{opacity:1})
+.to(".himmatnagar",{opacity:1})
+
+.to(".market-ahmedabad",{scale:1.1})
+
+.to("#southRoute",{strokeDashoffset:0})
+
+.to(".anand",{opacity:1})
+.to(".vadodara",{opacity:1})
+.to(".surat",{opacity:.6})
+
 
 /* ================================
-   MARKET HUBS – CINEMATIC PIN FLOW
+   IMPACT ECOSYSTEM – PINNED REVEAL
 ================================ */
 
 gsap.registerPlugin(ScrollTrigger);
 
-const hubs = gsap.utils.toArray(".hub-block");
-const roadLine = document.querySelector(".road-line");
-const roadWrapper = document.querySelector(".road-wrapper");
-
-/* Reset states */
-gsap.set(hubs, { opacity: 0, y: 40 });
-gsap.set(".tags span", { opacity: 0, y: 15 });
-gsap.set(roadLine, { height: 0 });
-
-/* Ensure layout calculated */
-window.addEventListener("load", () => {
-
-  const totalHeight = roadWrapper.scrollHeight;
-
-  let tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".markets",
-      start: "top top",
-      end: "+=2000",
-      scrub: 1,
-      pin: true
-    }
-  });
-
-  /* Draw full road slowly */
-  tl.to(roadLine, {
-    height: totalHeight,
-    duration: 3,
-    ease: "none"
-  });
-
-  /* Sequential Reveal */
-  hubs.forEach((hub) => {
-
-    const tags = hub.querySelectorAll(".tags span");
-
-    tl.to(hub, {
-      opacity: 1,
-      y: 0,
-      duration: 0.6,
-      ease: "power1.out"
-    });
-
-    tl.to(tags, {
-      opacity: 1,
-      y: 0,
-      duration: 0.4,
-      stagger: 0.15,
-      ease: "power1.out"
-    });
-
-  });
-
-  ScrollTrigger.refresh();
-});
-
-/* Impact Stagger Reveal */
-
-ScrollTrigger.create({
-trigger:".impact",
-start:"top 70%",
-once:true,
-onEnter:()=>{
-
 const nodes = gsap.utils.toArray(".node");
 
-nodes.forEach((node,i)=>{
+/* hide nodes initially */
+gsap.set(nodes,{opacity:0, scale:0.2});
 
-let rect = node.getBoundingClientRect();
-let center = document.querySelector(".ecosystem-orb").getBoundingClientRect();
+gsap.set("#northRoute",{strokeDashoffset:1000})
+gsap.set("#southRoute",{strokeDashoffset:1000})
 
-let dx = center.left + center.width/2 - (rect.left + rect.width/2);
-let dy = center.top + center.height/2 - (rect.top + rect.height/2);
-
-gsap.from(node,{
-x:dx,
-y:dy,
-scale:0.2,
-opacity:0,
-duration:1.2,
-delay:i*0.15,
-ease:"power3.out"
-});
-
-});
-
+/* timeline */
+let impactTimeline = gsap.timeline({
+scrollTrigger:{
+trigger:".impact",
+start:"top top",
+end:"+=3000",   // controls how long section stays pinned
+scrub:1,
+pin:true,
+pinSpacing:true,
+anticipatePin:1
 }
 });
 
-/* Sequential Counting */
-let counters = document.querySelectorAll("[data-count]");
+/* node reveal */
+nodes.forEach((node)=>{
+impactTimeline.to(node,{
+opacity:1,
+scale:1,
+duration:0.8,
+ease:"back.out(1.7)"
+}, "+=0.25");
+});
 
-counters.forEach((counter,i)=>{
-ScrollTrigger.create({
-trigger:counter,
-start:"top 80%",
-onEnter:()=>{
+/* number counting */
+impactTimeline.call(()=>{
+document.querySelectorAll("[data-count]").forEach((counter,i)=>{
 gsap.to(counter,{
 innerText:counter.dataset.count,
-duration:2.2,
+duration:2,
 delay:i*0.15,
 ease:"power2.out",
 snap:{innerText:0.1}
 });
-}
 });
 });
+
+
 
 /* ================================
    STORY – CINEMATIC DEPTH FLOW
 ================================ */
-
-/* Content cinematic reveal */
-gsap.fromTo(".story-content",
-  { scale: 1.25, opacity: 0, y: 80 },
-  {
-    scale: 1,
-    opacity: 1,
-    y: 0,
-    ease: "power2.out",
-    scrollTrigger: {
-      trigger: ".story",
-      start: "top 75%",
-      end: "top 35%",
-      scrub: true
-    }
-  }
-);
-
-/* Gentle fade out while exiting */
-gsap.to(".story-content", {
-  opacity: 0,
-  y: -80,
-  ease: "none",
-  scrollTrigger: {
-    trigger: ".story",
-    start: "bottom 40%",
-    end: "bottom top",
-    scrub: true
-  }
-});
 
 function toggleMenu(){
 document.querySelector(".links").classList.toggle("active");
@@ -1531,9 +1564,10 @@ const track = document.querySelector(".story-track");
 ScrollTrigger.create({
   trigger: ".story",
   start: "top top",
-  end: "+=" + (window.innerWidth * panels.length),
+  end: "+=" + (window.innerWidth * (panels.length - 1)),
   pin: true,
-  scrub: 1.5
+  scrub: 1.5,
+  pinSpacing: true
 });
 
 gsap.to(track,{
@@ -1542,9 +1576,13 @@ gsap.to(track,{
   scrollTrigger:{
     trigger:".story",
     start:"top top",
-    end:"+=" + (window.innerWidth * panels.length),
+    end:"+=" + (window.innerWidth * (panels.length - 1)),
     scrub:1.5
   }
+});
+
+window.addEventListener("load", () => {
+ScrollTrigger.refresh();
 });
 
 </script>
