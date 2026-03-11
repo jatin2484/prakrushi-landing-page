@@ -128,19 +128,17 @@ nav .links.active{right:0}
 
 .hero{
 height:100vh;
-display:flex;
-align-items:flex-end;
-justify-content:center;
-padding-bottom:8vh;
-text-align:center;
 position:relative;
 overflow:hidden;
+text-align:center;
 }
 
 .highlight{
-color:#34d399;
+background:linear-gradient(90deg,#34d399,#22c55e,#4ade80);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
 font-weight:600;
-position:relative;
+animation:heroGlow 6s ease-in-out infinite;
 }
 
 .hero video{
@@ -178,9 +176,14 @@ text-align:center;
 }
 
 .hero-line{
-display:block;
-white-space:nowrap;
+display:inline;
+white-space:normal;
 margin:0 auto;
+
+#line1,
+#line1b{
+display:block;
+}
 }
 
 .hero p{
@@ -193,16 +196,41 @@ opacity:.85;
 .hero .stakeholder{color:#86efac}
 
 #hero-typing{
+position:absolute;
+left:50%;
+bottom:8vh;
+transform:translateX(-50%);
+
 max-width:1100px;
-margin:auto;
+width:90%;
+
 text-align:center;
 
 font-size:clamp(2rem,4vw,4rem);
 line-height:1.25;
 letter-spacing:0.04em;
 font-weight:500;
+}
 
-min-height:2.6em;
+.hero-headline{
+font-size:clamp(2.8rem,4vw,4rem);
+line-height:1.2;
+letter-spacing:0.01em;
+font-weight:600;
+text-shadow:0 8px 28px rgba(0,0,0,.45);
+}
+
+.hero-headline span{
+display:inline;
+}
+
+.hero-tagline{
+margin-top:18px;
+font-size:clamp(0.9rem,1.2vw,1.05rem);   /* smaller */
+opacity:.85;
+letter-spacing:.03em;
+opacity:.75;
+font-weight:400;
 }
 
 @keyframes blink{
@@ -493,7 +521,7 @@ transform:translateY(0);
 position:relative;
 height:auto;
 overflow:visible;
-margin-top:80px;
+margin-top:0;
 }
 
 .story-track{
@@ -618,7 +646,10 @@ text-shadow:0 0 0 rgba(34,197,94,0);
 }
 
 /* FARMS */
-.farms{height:300vh;position:relative}
+.farms{
+min-height:100vh;
+position:relative;
+}
 .farm-slide{
 height:100vh;position:relative;
 display:flex;align-items:center;justify-content:center
@@ -698,8 +729,9 @@ min-height:100vh;
 display:flex;
 flex-direction:column;
 align-items:center;
-justify-content:center;
-gap:40px;
+justify-content:flex-start; /* prevents vertical centering gap */
+padding-top:120px;
+gap:30px;
 position:relative;
 }
 
@@ -1029,18 +1061,18 @@ font-size:0.7rem;
 <video autoplay muted loop playsinline>
 <source src="hero.mp4" type="video/mp4">
 </video>
-<div>
-<h1 id="hero-typing">
-<span class="hero-line" id="line1"></span>
-<span class="hero-line" id="line2"></span>
+
+<div id="hero-typing">
+
+<h1 class="hero-headline">
+<span id="line1"></span>
+<span id="line1b"></span>
 </h1>
-<p>
-Connecting <span class="highlight">farmers</span>, 
-<span class="highlight">families</span>, 
-<span class="highlight">ecology</span> and 
-sovereign <span class="highlight">markets</span>.
-</p>
+
+<p class="hero-tagline" id="line2"></p>
+
 </div>
+
 </section>
 
 <!-- ECOSYSTEM IMPACT -->
@@ -1277,8 +1309,6 @@ When farmers and families reconnect,food regains meaning.
 
 <section class="markets" id="markets">
 
-<h2 class="markets-title">Market Ecosystem</h2>
-
 <div class="map-container">
 
 <!-- Ahmedabad -->
@@ -1402,188 +1432,279 @@ Phone: +91 9XXXXXXXXX
 
 <script>
 
-/* HERO → IMPACT EMERGENCE */
+gsap.registerPlugin(ScrollTrigger)
 
-ScrollTrigger.create({
-trigger:".impact",
-start:"top 80%",
-onEnter:()=>{
-document.querySelector(".impact").classList.add("visible");
-}
-});
-
-/* HERO LETTER TYPING */
-
-const line1 = "Trust in food begins with soil"
-const line2 = "patience, and people who care."
-
-const highlightWords = ["Trust","food","soil","patience","people"]
-
-let i = 0
-let j = 0
-let speed = 120
-
-function typeHero(){
-
-const l1 = document.getElementById("line1")
-const l2 = document.getElementById("line2")
-
-if(i < line1.length){
-
-l1.innerHTML += line1.charAt(i)
-i++
-setTimeout(typeHero,speed)
-
-}
-else if(j < line2.length){
-
-l2.innerHTML += line2.charAt(j)
-j++
-setTimeout(typeHero,speed)
-
-}
-else{
-
-let html = document.getElementById("hero-typing").innerHTML
-
-highlightWords.forEach(word=>{
-let regex = new RegExp(word,"g")
-html = html.replace(regex, `<span class="highlight">${word}</span>`)
+gsap.config({
+force3D:true
 })
 
-document.getElementById("hero-typing").innerHTML = html
+ScrollTrigger.config({
+limitCallbacks:true
+})
+
+/* HERO → IMPACT FADE */
+
+ScrollTrigger.create({
+  trigger:"#impact",
+  start:"top 80%",
+  onEnter:()=>{
+    document.querySelector("#impact").classList.add("visible")
+  }
+})
+
+
+/* =============================
+   HERO TYPING
+============================= */
+
+const line1Parts = [
+{text:"Trust",class:"highlight"},
+{text:" in "},
+{text:"food",class:"highlight"},
+{text:" begins with "},
+{text:"soil,",class:"highlight"}
+]
+
+const line1bParts = [
+{text:"patience",class:"highlight"},
+{text:", and "},
+{text:"people",class:"highlight"},
+{text:" who care."}
+]
+
+const line2Parts = [
+{text:"Connecting "},
+{text:"farmers",class:"highlight"},
+{text:", "},
+{text:"families",class:"highlight"},
+{text:", "},
+{text:"ecology",class:"highlight"},
+{text:" and sovereign "},
+{text:"markets",class:"highlight"},
+{text:"."}
+]
+
+function typeParts(parts, element, speed=120){
+
+let partIndex = 0
+
+function typePart(){
+
+if(partIndex >= parts.length) return
+
+const part = parts[partIndex]
+
+let span = document.createElement("span")
+
+if(part.class){
+span.className = part.class
+}
+
+element.appendChild(span)
+
+let charIndex = 0
+
+function typeChar(){
+
+span.textContent += part.text.charAt(charIndex)
+
+charIndex++
+
+if(charIndex < part.text.length){
+
+setTimeout(typeChar, speed)
+
+}else{
+
+partIndex++
+
+setTimeout(typePart, 120)
 
 }
 
 }
 
-window.addEventListener("load", typeHero)
+typeChar()
 
-/* MARKET ECOSYSTEM FLOW */
+}
 
-gsap.registerPlugin(ScrollTrigger)
+typePart()
+
+}
+
+/* start typing */
+
+window.addEventListener("load", ()=>{
+
+typeParts(line1Parts, document.getElementById("line1"), 70)
+
+setTimeout(()=>{
+typeParts(line1bParts, document.getElementById("line1b"), 70)
+}, 2000)
+
+setTimeout(()=>{
+typeParts(line2Parts, document.getElementById("line2"), 60)
+}, 4200)
+
+})
+
+
+
+/* =============================
+   IMPACT VAULT
+============================= */
+
+const impactNodes=gsap.utils.toArray("#impact .node")
+
+gsap.set(impactNodes,{
+opacity:0,
+scale:0.4
+})
+
+let impactTL=gsap.timeline({
+scrollTrigger:{
+trigger:"#impact",
+start:"top top",
+end:`+=${impactNodes.length*1200}`,
+pin:true,
+pinSpacing:true,
+scrub:1.5,
+anticipatePin:1,
+invalidateOnRefresh:true
+}
+})
+
+impactNodes.forEach(node=>{
+
+const counter=node.querySelector("[data-count]")
+const target=parseFloat(counter.dataset.count)
+
+impactTL.to(node,{
+opacity:1,
+scale:1,
+duration:0.6
+})
+
+impactTL.fromTo(counter,
+{innerText:0},
+{
+innerText:target,
+duration:1,
+snap:{innerText:1},
+onUpdate:function(){
+
+let value=this.targets()[0].innerText
+
+counter.innerText=Number(value).toFixed(
+target%1!==0?1:0
+)
+
+}
+})
+
+})
+
+
+
+/* =============================
+   STORY VAULT
+============================= */
+
+const storyPanels=gsap.utils.toArray(".story-panel")
+
+let storyTL=gsap.timeline({
+scrollTrigger:{
+trigger:"#story",
+start:"top top",
+end:`+=${storyPanels.length*1400}`,
+pin:true,
+pinSpacing:true,
+scrub:1.5,
+anticipatePin:1,
+invalidateOnRefresh:true
+}
+})
+
+storyPanels.forEach((panel,i)=>{
+
+storyTL.to(".story-track",{
+xPercent:-100*i,
+ease:"none"
+})
+
+})
+
+
+
+/* =============================
+   FARMS VAULT
+============================= */
+
+const farmSlides=gsap.utils.toArray(".farm-slide")
+
+let farmsTL=gsap.timeline({
+scrollTrigger:{
+trigger:"#farms",
+start:"top top",
+end:`+=${farmSlides.length*1400}`,
+pin:true,
+pinSpacing:true,
+scrub:1.5,
+anticipatePin:1,
+invalidateOnRefresh:true
+}
+})
+
+farmSlides.forEach((slide,i)=>{
+
+farmsTL.to(slide,{
+opacity:1,
+duration:1
+})
+
+})
+
+
+
+/* =============================
+   MARKETS VAULT
+============================= */
 
 gsap.set(".market-node",{opacity:0})
 gsap.set("#markets .tags span",{opacity:0})
 gsap.set("#northRoute",{strokeDashoffset:1000})
 gsap.set("#southRoute",{strokeDashoffset:1000})
 
-let tl = gsap.timeline({
+let marketsTL=gsap.timeline({
 scrollTrigger:{
 trigger:"#markets",
-start:"top 80%",
-end:"+=1800",
-scrub:1,
-pin:true
+start:"top top",
+end:"+=2000",
+pin:true,
+pinSpacing:true,
+scrub:1.5,
+anticipatePin:1,
+invalidateOnRefresh:true
 }
 })
 
-tl
-
+marketsTL
 .to(".market-ahmedabad",{opacity:1})
-
 .to("#markets .tags span",{opacity:1,stagger:.2})
-
 .to("#northRoute",{strokeDashoffset:0})
-
 .to(".gandhinagar",{opacity:1})
 .to(".himmatnagar",{opacity:1})
-
-.to(".market-ahmedabad",{scale:1.1})
-
 .to("#southRoute",{strokeDashoffset:0})
-
 .to(".anand",{opacity:1})
 .to(".vadodara",{opacity:1})
 .to(".surat",{opacity:.6})
 
 
-/* ================================
-   IMPACT ECOSYSTEM – PINNED REVEAL
-================================ */
+ScrollTrigger.refresh()
 
-gsap.registerPlugin(ScrollTrigger);
-
-const nodes = gsap.utils.toArray(".node");
-
-/* hide nodes initially */
-gsap.set(nodes,{opacity:0, scale:0.2});
-
-gsap.set("#northRoute",{strokeDashoffset:1000})
-gsap.set("#southRoute",{strokeDashoffset:1000})
-
-/* timeline */
-let impactTimeline = gsap.timeline({
-scrollTrigger:{
-trigger:".impact",
-start:"top top",
-end:"+=3000",   // controls how long section stays pinned
-scrub:1,
-pin:true,
-pinSpacing:true,
-anticipatePin:1
-}
-});
-
-/* node reveal */
-nodes.forEach((node)=>{
-impactTimeline.to(node,{
-opacity:1,
-scale:1,
-duration:0.8,
-ease:"back.out(1.7)"
-}, "+=0.25");
-});
-
-/* number counting */
-impactTimeline.call(()=>{
-document.querySelectorAll("[data-count]").forEach((counter,i)=>{
-gsap.to(counter,{
-innerText:counter.dataset.count,
-duration:2,
-delay:i*0.15,
-ease:"power2.out",
-snap:{innerText:0.1}
-});
-});
-});
-
-
-
-/* ================================
-   STORY – CINEMATIC DEPTH FLOW
-================================ */
-
-function toggleMenu(){
-document.querySelector(".links").classList.toggle("active");
-}
-
-const panels = gsap.utils.toArray(".story-panel");
-const track = document.querySelector(".story-track");
-
-ScrollTrigger.create({
-  trigger: ".story",
-  start: "top top",
-  end: "+=" + (window.innerWidth * (panels.length - 1)),
-  pin: true,
-  scrub: 1.5,
-  pinSpacing: true
-});
-
-gsap.to(track,{
-  xPercent: -100 * (panels.length - 1),
-  ease: "none",
-  scrollTrigger:{
-    trigger:".story",
-    start:"top top",
-    end:"+=" + (window.innerWidth * (panels.length - 1)),
-    scrub:1.5
-  }
-});
-
-window.addEventListener("load", () => {
-ScrollTrigger.refresh();
-});
+window.addEventListener("resize", () => {
+  ScrollTrigger.refresh()
+})
 
 </script>
 
