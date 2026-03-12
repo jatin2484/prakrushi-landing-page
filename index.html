@@ -681,6 +681,9 @@ box-shadow:0 30px 80px rgba(0,0,0,0.35);
 
 text-align:center;
 
+opacity:0;
+transform:translateY(40px);
+
 }
 
 .farm-overlay a{
@@ -722,6 +725,84 @@ transform:translateX(6px);
 
 }
 
+.farm-more{
+text-align:center;
+margin-top:60px;
+}
+
+.farm-more a{
+font-size:15px;
+letter-spacing:.08em;
+color:#a7f3d0;
+text-decoration:none;
+opacity:.85;
+transition:.3s;
+}
+
+.farm-more a:hover{
+opacity:1;
+transform:translateY(-2px);
+}
+
+.farm-slide{
+height:100vh;
+position:absolute;
+top:0;
+left:0;
+width:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.farms{
+height:100vh;
+position:relative;
+overflow:hidden;
+}
+
+.farm-button{
+position:absolute;
+top:90px;
+right:40px;
+
+padding:10px 18px;
+
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(10px);
+
+border-radius:8px;
+border:1px solid rgba(255,255,255,0.35);
+
+color:#fff;
+text-decoration:none;
+
+font-size:14px;
+letter-spacing:.05em;
+
+transition:.25s;
+
+z-index:20;
+}
+
+.farm-button:hover{
+background:rgba(255,255,255,0.25);
+}
+
+.farm-vignette{
+position:absolute;
+inset:0;
+
+background:radial-gradient(
+circle at center,
+rgba(0,0,0,0) 35%,
+rgba(0,0,0,.35) 100%
+);
+
+opacity:.6;
+pointer-events:none;
+}
+
 /* MARKET ECOSYSTEM */
 
 .markets{
@@ -745,6 +826,28 @@ height:600px;
 margin:0;
 }
 
+.city{
+position:absolute;
+display:flex;
+align-items:center;
+gap:12px;
+opacity:0;
+}
+
+.city a{
+color:#fff;
+text-decoration:none;
+font-size:16px;
+}
+
+.dot{
+width:8px;
+height:8px;
+background:#34d399;
+border-radius:50%;
+box-shadow:0 0 10px rgba(52,211,153,.7);
+}
+
 /* cities */
 
 .city{
@@ -758,21 +861,21 @@ transform:translateY(20px);
 /* north */
 
 .himmatnagar{
-top:40px;
-left:470px;
+top:90px;
+left:420px;
 }
 
 .gandhinagar{
-top:120px;
-left:420px;
+top:170px;
+left:410px;
 }
 
 /* ahmedabad core */
 
 .ahmedabad-row{
 position:absolute;
-top:240px;
-left:260px;
+top:260px;
+left:400px;
 display:flex;
 align-items:center;
 gap:20px;
@@ -786,6 +889,9 @@ font-size:20px;
 /* tags */
 
 .tags{
+position:absolute;
+top:300px;
+left:580px;
 display:flex;
 gap:10px;
 }
@@ -798,20 +904,35 @@ font-size:13px;
 opacity:.9;
 }
 
+.tags a{
+border:1px solid rgba(255,255,255,.3);
+padding:4px 10px;
+border-radius:20px;
+font-size:12px;
+opacity:.9;
+color:#fff;
+text-decoration:none;
+transition:.25s;
+}
+
+.tags a:hover{
+background:rgba(255,255,255,.15);
+}
+
 /* south */
 
 .anand{
-top:330px;
-left:420px;
+top:340px;
+left:395px;
 }
 
 .vadodara{
 top:420px;
-left:390px;
+left:385px;
 }
 
 .surat{
-top:500px;
+top:520px;
 left:360px;
 opacity:.5;
 }
@@ -830,26 +951,19 @@ opacity:.15;
 filter:brightness(1.2);
 }
 
-.market-node{
-position:absolute;
-font-size:16px;
-opacity:0;
-}
-
 /* Ahmedabad center */
 
 .market-ahmedabad{
 top:300px;
-left:440px;
+left:330px;
 font-weight:600;
 }
 
 /* hubs */
 
 .tags{
-position:absolute;
 top:300px;
-left:520px;
+left:580px;
 display:flex;
 gap:10px;
 }
@@ -866,30 +980,30 @@ opacity:0;
 
 .gandhinagar{
 top:210px;
-left:470px;
+left:300px;
 }
 
 .himmatnagar{
 top:120px;
-left:500px;
+left:300px;
 }
 
 /* south */
 
 .anand{
 top:380px;
-left:430px;
+left:300px;
 }
 
 .vadodara{
 top:450px;
-left:420px;
+left:300px;
 }
 
 .surat{
 top:520px;
-left:410px;
-opacity:.5;
+left:300px;
+opacity:.6;
 }
 
 /* animated routes */
@@ -904,6 +1018,20 @@ pointer-events:none;
 .routes path{
 stroke-dasharray:1000;
 stroke-dashoffset:1000;
+stroke:#34d399;
+stroke-width:2;
+filter:drop-shadow(0 0 6px rgba(52,211,153,.5));
+}
+
+.hub-dot{
+position:absolute;
+top:305px;
+left:420px;
+width:8px;
+height:8px;
+background:#34d399;
+border-radius:50%;
+box-shadow:0 0 12px #34d399;
 }
 
 /* JOURNAL */
@@ -1266,10 +1394,15 @@ When farmers and families reconnect,food regains meaning.
 </section>
 
 <!-- FARMS -->
+
 <section class="farms" id="farms">
 
 <div class="farm-slide">
 <img src="farm1.jpeg">
+
+<div class="farm-vignette"></div>
+
+<a class="farm-button" href="farms.html">View Farms →</a>
 
 <a href="farms.html" class="farm-overlay">
 <h2>Regenerative Fields</h2>
@@ -1283,6 +1416,10 @@ When farmers and families reconnect,food regains meaning.
 <div class="farm-slide">
 <img src="farm2.jpg">
 
+<div class="farm-vignette"></div>
+
+<a class="farm-button" href="farms.html">View Farms →</a>
+
 <a href="farms.html" class="farm-overlay">
 <h2>Community Farming</h2>
 <p>Collaborative knowledge systems.</p>
@@ -1294,6 +1431,10 @@ When farmers and families reconnect,food regains meaning.
 
 <div class="farm-slide">
 <img src="farm3.jpg">
+
+<div class="farm-vignette"></div>
+
+<a class="farm-button" href="farms.html">View Farms →</a>
 
 <a href="farms.html" class="farm-overlay">
 <h2>Transparent Harvest</h2>
@@ -1312,37 +1453,57 @@ When farmers and families reconnect,food regains meaning.
 <div class="map-container">
 
 <!-- Ahmedabad -->
-<div class="market-node market-ahmedabad">Ahmedabad</div>
+<div class="city ahmedabad">
+<div class="dot"></div>
+<a href="markets/ahmedabad.html">Ahmedabad</a>
+</div>
 
 <div class="tags">
-<span>Navjivan</span>
-<span>Sola</span>
-<span>BAOU</span>
-<span>Palodiya</span>
+<a href="markets/navjivan.html">Navjivan</a>
+<a href="markets/sola.html">Sola</a>
+<a href="markets/baou.html">BAOU</a>
+<a href="markets/palodiya.html">Palodiya</a>
 </div>
 
 <!-- North -->
-<div class="market-node gandhinagar">Gandhinagar</div>
-<div class="market-node himmatnagar">Himmatnagar</div>
+<div class="city gandhinagar">
+<div class="dot"></div>
+<a href="markets/gandhinagar.html">Gandhinagar</a>
+</div>
+
+<div class="city himmatnagar">
+<div class="dot"></div>
+<a href="markets/himmatnagar.html">Himmatnagar</a>
+</div>
 
 <!-- South -->
-<div class="market-node anand">Anand</div>
-<div class="market-node vadodara">Vadodara</div>
-<div class="market-node surat proposed">Surat</div>
+<div class="city anand">
+<div class="dot"></div>
+<a href="markets/anand.html">Anand</a>
+</div>
+
+<div class="city vadodara">
+<div class="dot"></div>
+<a href="markets/vadodara.html">Vadodara</a>
+</div>
+
+<div class="city surat">
+<div class="dot"></div>
+<a href="markets/surat.html">Surat</a>
+</div>
+
+
+<div class="hub-dot"></div>
 
 <svg class="routes" viewBox="0 0 900 600">
 
 <path id="northRoute"
-d="M450 300 L470 200 L500 120"
-stroke="#34d399"
-stroke-width="2"
+d="M405 265 C410 230 415 200 420 170 S430 120 435 95"
 fill="none"
 />
 
 <path id="southRoute"
-d="M450 300 L430 380 L420 450 L410 520"
-stroke="#34d399"
-stroke-width="2"
+d="M405 265 C395 310 390 340 385 420 S370 520 360 540"
 fill="none"
 />
 
@@ -1640,26 +1801,61 @@ ease:"none"
    FARMS VAULT
 ============================= */
 
-const farmSlides=gsap.utils.toArray(".farm-slide")
+const farmSlides = gsap.utils.toArray(".farm-slide")
 
-let farmsTL=gsap.timeline({
+gsap.set(farmSlides, {opacity:0})
+gsap.set(farmSlides[0], {opacity:1})
+
+let farmsTL = gsap.timeline({
 scrollTrigger:{
 trigger:"#farms",
 start:"top top",
-end:`+=${farmSlides.length*1400}`,
+end:`+=${farmSlides.length * 1500}`,
 pin:true,
-pinSpacing:true,
-scrub:1.5,
-anticipatePin:1,
-invalidateOnRefresh:true
+scrub:1.2
 }
 })
 
 farmSlides.forEach((slide,i)=>{
 
-farmsTL.to(slide,{
+const card = slide.querySelector(".farm-overlay")
+const img = slide.querySelector("img")
+
+const vignette = slide.querySelector(".farm-vignette")
+
+if(i !== 0){
+farmsTL.to(farmSlides[i], {opacity:1, duration:1})
+}
+
+/* image cinematic zoom */
+farmsTL.fromTo(img,
+{scale:1, y:0},
+{scale:1.15, y:-60, duration:2},
+"<"
+)
+
+/* vignette focus */
+farmsTL.fromTo(vignette,
+{opacity:.3},
+{opacity:.7, duration:1},
+"<"
+)
+
+/* card reveal */
+farmsTL.to(card,{
 opacity:1,
+y:0,
 duration:1
+},"<0.5")
+
+/* card hold */
+farmsTL.to({}, {duration:1})
+
+/* card fade */
+farmsTL.to(card,{
+opacity:0,
+y:-30,
+duration:0.6
 })
 
 })
@@ -1670,31 +1866,40 @@ duration:1
    MARKETS VAULT
 ============================= */
 
-gsap.set(".market-node",{opacity:0})
-gsap.set("#markets .tags span",{opacity:0})
+gsap.set(".city",{opacity:0})
+gsap.set("#markets .tags a",{opacity:0})
 gsap.set("#northRoute",{strokeDashoffset:1000})
 gsap.set("#southRoute",{strokeDashoffset:1000})
 
-let marketsTL=gsap.timeline({
+let marketsTL = gsap.timeline({
 scrollTrigger:{
 trigger:"#markets",
 start:"top top",
-end:"+=2000",
+end:"+=2200",
 pin:true,
-pinSpacing:true,
-scrub:1.5,
-anticipatePin:1,
-invalidateOnRefresh:true
+scrub:1.5
 }
 })
 
 marketsTL
-.to(".market-ahmedabad",{opacity:1})
-.to("#markets .tags span",{opacity:1,stagger:.2})
-.to("#northRoute",{strokeDashoffset:0})
+
+/* Ahmedabad first */
+.to(".ahmedabad",{opacity:1})
+
+/* hub tags */
+.to("#markets .tags a",{opacity:1,stagger:.2})
+
+/* draw north route */
+.to("#northRoute",{strokeDashoffset:0,duration:1})
+
+/* north cities */
 .to(".gandhinagar",{opacity:1})
 .to(".himmatnagar",{opacity:1})
-.to("#southRoute",{strokeDashoffset:0})
+
+/* draw south route */
+.to("#southRoute",{strokeDashoffset:0,duration:1})
+
+/* south cities */
 .to(".anand",{opacity:1})
 .to(".vadodara",{opacity:1})
 .to(".surat",{opacity:.6})
