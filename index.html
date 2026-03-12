@@ -805,15 +805,36 @@ pointer-events:none;
 
 /* MARKET ECOSYSTEM */
 
+
 .markets{
 min-height:100vh;
 display:flex;
 flex-direction:column;
 align-items:center;
-justify-content:flex-start; /* prevents vertical centering gap */
-padding-top:120px;
-gap:30px;
-position:relative;
+justify-content:center;
+
+padding-top:80px;   /* space for fixed navbar */
+
+gap:12px;
+}
+
+.markets-header{
+text-align:center;
+max-width:700px;
+margin-bottom:10px;
+margin-top:4px;
+}
+
+.markets-header h2{
+font-size:28px;
+letter-spacing:.12em;
+font-weight:600;
+}
+
+.markets-header p{
+opacity:.75;
+font-size:12px;
+letter-spacing:.04em;
 }
 
 .market-map{
@@ -826,53 +847,40 @@ height:600px;
 margin:0;
 }
 
-.city{
-position:absolute;
-display:flex;
-align-items:center;
-gap:10px;
-opacity:0;
-}
-
 .city a{
 color:#fff;
 text-decoration:none;
 font-size:16px;
+margin-left:10px;
 }
 
 .dot{
-width:8px;
-height:8px;
+width:10px;
+height:10px;
 background:#34d399;
 border-radius:50%;
-box-shadow:0 0 10px rgba(52,211,153,.7);
+box-shadow:0 0 6px rgba(52,211,153,.6);
+
+margin-left:-5px;
+
+/* NEW */
+position:relative;
+z-index:5;
 }
 
 /* cities */
 
 .city{
 position:absolute;
+display:flex;
+align-items:center;
+gap:10px;
 font-size:18px;
 letter-spacing:.08em;
 opacity:0;
-transform:translateY(20px);
-}
 
-/* north */
-
-.himmatnagar{
-top:90px;
-left:420px;
-}
-
-.gandhinagar{
-top:170px;
-left:410px;
-}
-
-.ahmedabad{
-top:260px;
-left:405px;
+transform:translateY(-50%);
+white-space:nowrap;   /* prevents vertical breaking */
 }
 
 /* ahmedabad core */
@@ -891,15 +899,25 @@ font-weight:600;
 font-size:20px;
 }
 
+.ahmedabad .dot{
+animation:hubPulse 2s infinite;
+}
+
+@keyframes hubPulse{
+0%{box-shadow:0 0 0 rgba(52,211,153,.6)}
+50%{box-shadow:0 0 18px rgba(52,211,153,1)}
+100%{box-shadow:0 0 0 rgba(52,211,153,.6)}
+}
+
 /* tags */
 
 .tags{
-position:absolute;
-top:260px;
-left:470px;
 display:flex;
-gap:14px;
+gap:12px;
+margin-left:18px;
 align-items:center;
+flex-wrap:nowrap;   /* prevents second line */
+white-space:nowrap;
 }
 
 .tags span{
@@ -927,26 +945,10 @@ background:rgba(255,255,255,.15);
 
 /* south */
 
-.anand{
-top:340px;
-left:395px;
-}
-
-.vadodara{
-top:420px;
-left:385px;
-}
-
-.surat{
-top:520px;
-left:360px;
-opacity:.5;
-}
-
 .map-container{
 position:relative;
-width:900px;
-height:600px;
+width:min(900px,90vw);
+height:500px;   /* reduced so everything fits in viewport */
 margin:auto;
 }
 
@@ -965,23 +967,6 @@ left:330px;
 font-weight:600;
 }
 
-/* hubs */
-
-.tags{
-top:260px;
-left:520px;
-display:flex;
-gap:10px;
-}
-
-.tags span{
-border:1px solid rgba(255,255,255,.3);
-padding:4px 10px;
-border-radius:20px;
-font-size:12px;
-opacity:0;
-}
-
 /* animated routes */
 
 .routes{
@@ -989,14 +974,22 @@ position:absolute;
 width:100%;
 height:100%;
 pointer-events:none;
+z-index:1;
 }
 
 .routes path{
-stroke-dasharray:1000;
-stroke-dashoffset:1000;
 stroke:#34d399;
-stroke-width:2;
-filter:drop-shadow(0 0 6px rgba(52,211,153,.5));
+stroke-width:3;
+opacity:.95;
+filter:drop-shadow(0 0 10px rgba(52,211,153,.6));
+}
+
+.energy-flow{
+stroke:#a7f3d0;
+stroke-width:3;
+stroke-dasharray:6 14;
+opacity:.9;
+filter:drop-shadow(0 0 8px rgba(167,243,208,.8));
 }
 
 .hub-dot{
@@ -1426,19 +1419,25 @@ When farmers and families reconnect,food regains meaning.
 
 <section class="markets" id="markets">
 
+<div class="markets-header">
+<h2>Market HUBS</h2>
+<p>Local hubs connecting farmers, families and transparent food systems.</p>
+</div>
+
 <div class="map-container">
 
 <!-- Ahmedabad -->
 <div class="city ahmedabad">
 <div class="dot"></div>
 <a href="markets/ahmedabad.html">Ahmedabad</a>
-</div>
 
 <div class="tags">
 <a href="markets/navjivan.html">Navjivan</a>
 <a href="markets/sola.html">Sola</a>
 <a href="markets/baou.html">BAOU</a>
 <a href="markets/palodiya.html">Palodiya</a>
+</div>
+
 </div>
 
 <!-- North -->
@@ -1470,20 +1469,63 @@ When farmers and families reconnect,food regains meaning.
 
 <svg class="routes" viewBox="0 0 900 600">
 
-<path id="northRoute"
-d="M405 260
-L410 170
-L420 90"
+<path id="routeNorth1"
+d="M410 265 L410 170"
 fill="none"
+stroke="#34d399"
+stroke-width="3"
 />
 
-<path id="southRoute"
-d="M405 260
-L395 340
-L385 420
-L360 520"
+<path id="routeNorth2"
+d="M410 175 L420 90"
 fill="none"
+stroke="#34d399"
+stroke-width="3"
 />
+
+<path id="routeNorthExtend"
+d="M420 90 L430 55"
+fill="none"
+stroke="#34d399"
+stroke-width="3"
+/>
+
+<path id="routeSouth1"
+d="M410 265 L395 340"
+fill="none"
+stroke="#34d399"
+stroke-width="3"
+/>
+
+<path id="routeSouth2"
+d="M395 340 L385 420"
+fill="none"
+stroke="#34d399"
+stroke-width="3"
+/>
+
+<path id="routeSouth3"
+d="M385 420 L360 520"
+fill="none"
+stroke="#34d399"
+stroke-width="3"
+/>
+
+<path id="routeSouthExtend"
+d="M360 520 L340 545"
+fill="none"
+stroke="#34d399"
+stroke-width="3"
+/>
+
+<!-- City anchors -->
+<circle class="anchor" data-city="ahmedabad" cx="410" cy="265" r="0"/>
+<circle class="anchor" data-city="gandhinagar" cx="410" cy="170" r="0"/>
+<circle class="anchor" data-city="himmatnagar" cx="420" cy="90" r="0"/>
+
+<circle class="anchor" data-city="anand" cx="395" cy="340" r="0"/>
+<circle class="anchor" data-city="vadodara" cx="385" cy="420" r="0"/>
+<circle class="anchor" data-city="surat" cx="360" cy="520" r="0"/>
 
 </svg>
 
@@ -1846,42 +1888,91 @@ duration:0.6
 
 gsap.set(".city",{opacity:0})
 gsap.set("#markets .tags a",{opacity:0})
-gsap.set("#northRoute",{strokeDashoffset:1000})
-gsap.set("#southRoute",{strokeDashoffset:1000})
+
+gsap.set([
+"#routeNorth1",
+"#routeNorth2",
+"#routeNorthExtend",
+"#routeSouth1",
+"#routeSouth2",
+"#routeSouth3",
+"#routeSouthExtend"
+],{
+strokeDasharray:300,
+strokeDashoffset:300
+})
 
 let marketsTL = gsap.timeline({
 scrollTrigger:{
 trigger:"#markets",
 start:"top top",
-end:"+=2200",
+end:"+=4200",
 pin:true,
-scrub:1.5
+scrub:1.4
 }
 })
 
-marketsTL
+/* step 1 */
+marketsTL.to(".ahmedabad",{opacity:1})
 
-/* Ahmedabad first */
-.to(".ahmedabad",{opacity:1})
+/* step 2 */
+marketsTL.to("#markets .tags a",{opacity:1,stagger:.15})
 
-/* hub tags */
-.to("#markets .tags a",{opacity:1,stagger:.2})
-
-/* draw north route */
-.to("#northRoute",{strokeDashoffset:0,duration:1})
-
-/* north cities */
+/* step 3 */
+marketsTL.to("#routeNorth1",{strokeDashoffset:0})
 .to(".gandhinagar",{opacity:1})
+
+/* step 4 */
+marketsTL.to("#routeNorth2",{strokeDashoffset:0})
 .to(".himmatnagar",{opacity:1})
 
-/* draw south route */
-.to("#southRoute",{strokeDashoffset:0,duration:1})
+/* step 5 expansion */
+marketsTL.to("#routeNorthExtend",{strokeDashoffset:0})
 
-/* south cities */
+/* step 6 */
+marketsTL.to("#routeSouth1",{strokeDashoffset:0})
 .to(".anand",{opacity:1})
-.to(".vadodara",{opacity:1})
-.to(".surat",{opacity:.6})
 
+/* step 7 */
+marketsTL.to("#routeSouth2",{strokeDashoffset:0})
+.to(".vadodara",{opacity:1})
+
+/* step 8 */
+marketsTL.to("#routeSouth3",{strokeDashoffset:0})
+.to(".surat",{opacity:1})
+
+/* step 9 expansion */
+marketsTL.to("#routeSouthExtend",{strokeDashoffset:0})
+
+function alignCities(){
+
+const anchors = document.querySelectorAll(".anchor")
+
+anchors.forEach(anchor => {
+
+const cityName = anchor.dataset.city
+const city = document.querySelector("." + cityName)
+
+const svg = anchor.ownerSVGElement
+const pt = svg.createSVGPoint()
+
+pt.x = anchor.cx.baseVal.value
+pt.y = anchor.cy.baseVal.value
+
+const screen = pt.matrixTransform(svg.getScreenCTM())
+
+const map = document.querySelector(".map-container")
+const mapRect = map.getBoundingClientRect()
+
+city.style.left = (screen.x - mapRect.left) + "px"
+city.style.top = (screen.y - mapRect.top) + "px"
+
+})
+
+}
+
+window.addEventListener("load", alignCities)
+window.addEventListener("resize", alignCities)
 
 ScrollTrigger.refresh()
 
