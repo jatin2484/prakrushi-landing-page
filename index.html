@@ -375,6 +375,8 @@ bottom:0;
 left:-1px;
 width:2px;
 height:235px;
+transform-origin:left center;
+transform:scaleY(0);
 
 background:linear-gradient(
 to top,
@@ -404,60 +406,40 @@ filter:drop-shadow(0 0 6px rgba(34,197,94,.4));
 
 /* 8 directions */
 
-.r1{transform:rotate(0deg)}
-.r2{transform:rotate(45deg)}
-.r3{transform:rotate(90deg)}
-.r4{transform:rotate(135deg)}
-.r5{transform:rotate(180deg)}
-.r6{transform:rotate(225deg)}
-.r7{transform:rotate(270deg)}
-.r8{transform:rotate(315deg)}
+.r1{transform:rotate(-90deg)}  /* Points Left */
+.r2{transform:rotate(-45deg)}  /* Top Left */
+.r3{transform:rotate(0deg)}    /* Top Center */
+.r4{transform:rotate(45deg)}   /* Top Right */
+.r5{transform:rotate(90deg)}   /* Right Center */
+.r6{transform:rotate(135deg)}  /* Bottom Right */
+.r7{transform:rotate(180deg)}  /* Bottom Center */
+.r8{transform:rotate(225deg)}  /* Bottom Left */
 
-/* nodes aligned with rays */
+/* Optimized 8-Point Compass Layout */
 
-.node2{
-top:-2%;
-left:50%;
-transform:translateX(-50%);
-}
+/* Left Center (1) */
+.node1 { top: 50%; left: 0%; transform: translateY(-50%); }
 
-.node3{
-top:15%;
-right:15%;
-}
+/* Top Left Diagonal (2) */
+.node2 { top: 15%; left: 15%; }
 
-.node4{
-top:50%;
-right:-2%;
-transform:translateY(-50%);
-}
+/* Top Center (3) */
+.node3 { top: 0%; left: 50%; transform: translateX(-50%); }
 
-.node8{
-bottom:15%;
-right:15%;
-}
+/* Top Right Diagonal (4) */
+.node4 { top: 15%; right: 15%; }
 
-.node7{
-bottom:2%;
-left:50%;
-transform:translateX(-50%);
-}
+/* Right Center (5) */
+.node5 { top: 50%; right: 0%; transform: translateY(-50%); }
 
-.node6{
-bottom:15%;
-left:15%;
-}
+/* Bottom Right Diagonal (6) */
+.node6 { bottom: 15%; right: 15%; }
 
-.node5{
-top:50%;
-left:2%;
-transform:translateY(-50%);
-}
+/* Bottom Center (7) */
+.node7 { bottom: 0%; left: 50%; transform: translateX(-50%); }
 
-.node1{
-top:15%;
-left:15%;
-}
+/* Bottom Left Diagonal (8) */
+.node8 { bottom: 15%; left: 15%; }
 
 
 .impact{
@@ -1199,7 +1181,7 @@ font-size:0.7rem;
 
 </div>
 
-<div class="node node5">
+<div class="node node1">
 
   <div class="node-row">
     <span class="node-icon">🌱</span>
@@ -1211,7 +1193,7 @@ font-size:0.7rem;
 
 </div>
 
-<div class="node node1">
+<div class="node node2">
 
   <div class="node-row">
     <span class="node-icon">💧</span>
@@ -1223,7 +1205,7 @@ font-size:0.7rem;
 
 </div>
 
-<div class="node node2">
+<div class="node node3">
 
   <div class="node-row">
     <span class="node-icon">🧪</span>
@@ -1235,7 +1217,7 @@ font-size:0.7rem;
 
 </div>
 
-<div class="node node3">
+<div class="node node4">
 
   <div class="node-row">
     <span class="node-icon">🌾</span>
@@ -1247,7 +1229,20 @@ font-size:0.7rem;
 
 </div>
 
-<div class="node node8">
+<div class="node node5">
+
+  <div class="node-row">
+    <span class="node-icon">👨‍👩‍👧</span>
+    <span class="node-divider">|</span>
+    <span class="metric-number" data-count="1100">0</span>
+  </div>
+
+  <p>Families Nourished</p>
+
+</div>
+
+
+<div class="node node6">
 
   <div class="node-row">
     <span class="node-icon">👨‍🌾</span>
@@ -1271,7 +1266,7 @@ font-size:0.7rem;
 
 </div>
 
-<div class="node node6">
+<div class="node node8">
 
   <div class="node-row">
     <span class="node-icon">🏪</span>
@@ -1280,18 +1275,6 @@ font-size:0.7rem;
   </div>
 
   <p>Decentralized Market Hubs</p>
-
-</div>
-
-<div class="node node4">
-
-  <div class="node-row">
-    <span class="node-icon">👨‍👩‍👧</span>
-    <span class="node-divider">|</span>
-    <span class="metric-number" data-count="1100">0</span>
-  </div>
-
-  <p>Families Nourished</p>
 
 </div>
 
@@ -1730,60 +1713,70 @@ typeParts(line2Parts, document.getElementById("line2"), 60)
 })
 
 
-
 /* =============================
-   IMPACT VAULT
+   REFINED IMPACT VAULT
 ============================= */
+const impactNodes = gsap.utils.toArray("#impact .node");
+const rays = gsap.utils.toArray(".ray");
 
-const impactNodes=gsap.utils.toArray("#impact .node")
+// Initial Hidden State
+gsap.set(impactNodes, { opacity: 0, scale: 0.5, y: 20 });
+gsap.set(rays, { scaleY: 0, transformOrigin: "bottom center" });
 
-gsap.set(impactNodes,{
-opacity:0,
-scale:0.4
-})
+let impactTL = gsap.timeline({
+    scrollTrigger: {
+        trigger: "#impact",
+        start: "top top",
+        end: `+=${impactNodes.length * 800}`, // Total duration of the pin
+        pin: true,
+        scrub: 1,
+        anticipatePin: 1,
+        invalidateOnRefresh: true
+    }
+});
 
-let impactTL=gsap.timeline({
-scrollTrigger:{
-trigger:"#impact",
-start:"top top",
-end:`+=${impactNodes.length*1200}`,
-pin:true,
-pinSpacing:true,
-scrub:1.5,
-anticipatePin:1,
-invalidateOnRefresh:true
-}
-})
+// Animation Sequence for each "Step"
+impactNodes.forEach((node, i) => {
+    const ray = rays[i];
+    const counter = node.querySelector("[data-count]");
+    const target = parseFloat(counter.dataset.count);
 
-impactNodes.forEach(node=>{
+    // 1. Ray grows out
+    impactTL.to(ray, {
+        scaleY: 1,
+        duration: 0.8,
+        ease: "power2.out"
+    });
 
-const counter=node.querySelector("[data-count]")
-const target=parseFloat(counter.dataset.count)
+    // 2. Node appears immediately as ray hits
+    impactTL.to(node, {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        duration: 0.6,
+        ease: "back.out(1.7)"
+    }, "-=0.4");
 
-impactTL.to(node,{
-opacity:1,
-scale:1,
-duration:0.6
-})
+    // 3. Counter runs ONLY after node is visible
+    impactTL.fromTo(counter, 
+        { innerText: 0 }, 
+        {
+            innerText: target,
+            duration: 1.2,
+            snap: { innerText: 1 },
+            ease: "power1.inOut",
+            onUpdate: function() {
+                let value = this.targets()[0].innerText;
+                counter.innerText = Number(value).toFixed(target % 1 !== 0 ? 1 : 0);
+            }
+        }, "-=0.2");
 
-impactTL.fromTo(counter,
-{innerText:0},
-{
-innerText:target,
-duration:1,
-snap:{innerText:1},
-onUpdate:function(){
+    // 4. Subtle "Hold" pause so user can read before next item starts
+    impactTL.to({}, { duration: 0.5 });
+});
 
-let value=this.targets()[0].innerText
-
-counter.innerText=Number(value).toFixed(
-target%1!==0?1:0
-)
-
-}
-})
-
-})
+// Final hold after last node before releasing pin
+impactTL.to({}, { duration: 1 });
 
 
 
