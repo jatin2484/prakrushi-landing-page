@@ -1648,7 +1648,7 @@ const line2Parts = [
 {text:"."}
 ]
 
-function typeParts(parts, element, speed=120){
+function typeParts(parts, element, speed=110){
 
 let partIndex = 0
 
@@ -1714,12 +1714,11 @@ typeParts(line2Parts, document.getElementById("line2"), 60)
 
 
 /* =============================
-   REFINED IMPACT VAULT
+   REFINED IMPACT VAULT (With Exit Hold)
 ============================= */
 const impactNodes = gsap.utils.toArray("#impact .node");
 const rays = gsap.utils.toArray(".ray");
 
-// Initial Hidden State
 gsap.set(impactNodes, { opacity: 0, scale: 0.5, y: 20 });
 gsap.set(rays, { scaleY: 0, transformOrigin: "bottom center" });
 
@@ -1727,7 +1726,8 @@ let impactTL = gsap.timeline({
     scrollTrigger: {
         trigger: "#impact",
         start: "top top",
-        end: `+=${impactNodes.length * 800}`, // Total duration of the pin
+        // Increased multiplier from 800 to 1100 to create "scroll space" at the end
+        end: `+=${impactNodes.length * 1100}`, 
         pin: true,
         scrub: 1,
         anticipatePin: 1,
@@ -1735,20 +1735,17 @@ let impactTL = gsap.timeline({
     }
 });
 
-// Animation Sequence for each "Step"
 impactNodes.forEach((node, i) => {
     const ray = rays[i];
     const counter = node.querySelector("[data-count]");
     const target = parseFloat(counter.dataset.count);
 
-    // 1. Ray grows out
     impactTL.to(ray, {
         scaleY: 1,
         duration: 0.8,
         ease: "power2.out"
     });
 
-    // 2. Node appears immediately as ray hits
     impactTL.to(node, {
         opacity: 1,
         scale: 1,
@@ -1757,7 +1754,6 @@ impactNodes.forEach((node, i) => {
         ease: "back.out(1.7)"
     }, "-=0.4");
 
-    // 3. Counter runs ONLY after node is visible
     impactTL.fromTo(counter, 
         { innerText: 0 }, 
         {
@@ -1771,12 +1767,12 @@ impactNodes.forEach((node, i) => {
             }
         }, "-=0.2");
 
-    // 4. Subtle "Hold" pause so user can read before next item starts
-    impactTL.to({}, { duration: 0.5 });
+    impactTL.to({}, { duration: 0.5 }); // Small pause between steps
 });
 
-// Final hold after last node before releasing pin
-impactTL.to({}, { duration: 1 });
+// THE EXIT HOLD
+// This adds the "one or two more scroll space" before the Story Vault starts.
+impactTL.to({}, { duration: 3 });
 
 
 
