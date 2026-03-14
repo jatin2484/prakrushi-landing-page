@@ -795,8 +795,8 @@ flex-direction:column;
 align-items:center;
 justify-content:center;
 
-padding-top:80px;   /* space for fixed navbar */
-
+padding-top:60px;   /* space for fixed navbar */
+position: relative;
 gap:12px;
 }
 
@@ -985,52 +985,114 @@ border-radius:50%;
 box-shadow:0 0 12px #34d399;
 }
 
-/* JOURNAL */
-.journal{padding:120px 8%;}
-.journal-grid{
-display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:40px
-}
-.journal-card{
-background:linear-gradient(145deg,#0e1f1a,#0a1512);
-border-radius:24px;
-overflow:hidden;
-transition:all .4s cubic-bezier(.22,.61,.36,1);
-border:1px solid rgba(255,255,255,0.05);
-box-shadow:
-0 10px 30px rgba(0,0,0,.5),
-inset 0 1px 0 rgba(255,255,255,0.04);
+/* JOURNAL (CINEMATIC) */
+
+.journal {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centers both header and container */
+    position: relative;
+    padding: 20px 0; /* Reduced padding to keep everything in view */
 }
 
-.journal-card:hover{
-transform:translateY(-12px);
-box-shadow:
-0 20px 50px rgba(0,0,0,.6),
-0 0 25px rgba(16,185,129,.25);
+.journal-header {
+    text-align: center;
+    margin-bottom: 40px; /* Reduced to pull the card up slightly */
+    padding-top: 60px;    /* Adds space so it doesn't hit the Nav bar */
+    z-index: 10;
+    position: relative; /* Ensures it stays above the pinned vault */
 }
 
-.journal-card img{
-width:100%;
-height:240px;
-object-fit:cover;
-transition:transform .6s ease;
+.journal-header h2 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 0.5;      /* Tightened further to prevent top-overflow */
+    margin-bottom: 15px;
+    background: linear-gradient(to bottom, #ffffff 30%, #a7f3d0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    
+    /* This ensures the font doesn't get clipped by its own box */
+    padding: 10px 0; 
 }
 
-.journal-card:hover img{
-transform:scale(1.05);
+.journal-header p {
+    font-size: 1rem; /* Smaller size */
+    opacity: 0.4; /* More subtle */
+    letter-spacing: 0.5em; /* Extreme spacing for cinematic feel */
+    text-transform: uppercase;
+    font-weight: 500;
 }
 
-.journal-body{
-padding:30px;
+.journal-container {
+    position: relative;
+    width: 90vw;
+    max-width: 1200px;
+    height: 70vh; /* Scaled to viewport height */
+    perspective: 2000px;
 }
 
-.journal-body h3{
-font-size:1.3rem;
-margin-bottom:12px;
+.journal-card {
+    position: absolute;
+    inset: 0;
+    display: flex; /* Flex ensures no blank space between image and content */
+    align-items: stretch; /* Forces children to be equal height */
+    background: #04120e;
+    border-radius: 40px;
+    overflow: hidden;
+    opacity: 0;
+    border: 1px solid rgba(255,255,255,0.08);
 }
 
-.journal-body p{
-opacity:.7;
-margin-bottom:20px;
+.journal-image-wrapper {
+    flex: 1.3; /* Image gets slightly more space */
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* The "Odd" fix: Soft mask instead of hard clip */
+.journal-image-wrapper::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.journal-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.journal-content {
+    flex: 1;
+    padding: 60px;
+    background: #04120e; /* Match card background */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.journal-content h3 {
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    line-height: 1.1;
+    margin-bottom: 24px;
+    color: #fff;
+}
+
+.journal-content p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    opacity: 0.7;
+    margin-bottom: 40px;
+    max-width: 90%;
 }
 
 /* GET APP */
@@ -1517,26 +1579,38 @@ stroke-width="3"
 </section>
 
 <!-- JOURNAL -->
+
 <section class="journal" id="journal">
-<h2 style="text-align:center;margin-bottom:60px;">Field Journal</h2>
-<div class="journal-grid">
-<div class="journal-card">
-<img src="journal1.jpg">
-<div class="journal-body">
-<h3>Understanding Soil Health</h3>
-<p>Regenerative practices restoring carbon balance.</p>
-<a href="#">Read More →</a>
-</div>
-</div>
-<div class="journal-card">
-<img src="journal2.jpg">
-<div class="journal-body">
-<h3>Connecting Farmers & Families</h3>
-<p>Building trust-driven food ecosystems.</p>
-<a href="#">Read More →</a>
-</div>
-</div>
-</div>
+   <div class="journal-header">
+        <h2>Field Journal</h2>
+        <p>Documenting the transition to sovereignty</p>
+    </div>
+
+    <div class="journal-container">
+        <div class="journal-card">
+            <div class="journal-image-wrapper">
+                <img src="journal1.jpg" alt="Soil">
+            </div>
+            <div class="journal-content">
+                <span class="journal-date">March 2026</span>
+                <h3>The Living Soil Architecture</h3>
+                <p>We tracked a 14% increase in microbial activity across the Ahmedabad north sector. This isn't just dirt; it's a carbon-sequestering engine.</p>
+                <a href="#" class="farm-link">Read Entry →</a>
+            </div>
+        </div>
+
+        <div class="journal-card">
+            <div class="journal-image-wrapper">
+                <img src="journal2.jpg" alt="Bees">
+            </div>
+            <div class="journal-content">
+                <span class="journal-date">February 2026</span>
+                <h3>Pollination Passages</h3>
+                <p>Establishing heritage flower corridors between multi-vendor farms has increased yields by 18% without a single synthetic input.</p>
+                <a href="#" class="farm-link">Read Entry →</a>
+            </div>
+        </div>
+    </div>
 </section>
 
 <!-- GET APP -->
@@ -1888,14 +1962,18 @@ strokeDashoffset:300
 })
 
 let marketsTL = gsap.timeline({
-scrollTrigger:{
-trigger:"#markets",
-start:"top top",
-end:"+=4200",
-pin:true,
-scrub:1.4
-}
-})
+    scrollTrigger: {
+        trigger: "#markets",
+        start: "top top", // Keeps section pinned at the top
+        end: "+=4200",
+        pin: true,
+        scrub: 1.4,
+        anticipatePin: 1
+    }
+});
+
+/* Add this line at the very beginning of marketsTL to make the header fade in properly */
+marketsTL.from(".markets-header", { opacity: 0, y: -20, duration: 1 });
 
 /* step 1 */
 marketsTL.to(".ahmedabad",{opacity:1})
@@ -1967,6 +2045,86 @@ window.addEventListener("resize", () => {
 
 // After the last route (Surat) is drawn...
 marketsTL.to({}, { duration: 4 }); // Let the full map of Gujarat glow for a while
+
+/* =============================
+   CINEMATIC JOURNAL VAULT
+============================= */
+const journalCards = gsap.utils.toArray(".journal-card");
+
+let journalTL = gsap.timeline({
+    scrollTrigger: {
+        trigger: "#journal",
+        start: "top top",
+        end: `+=${journalCards.length * 1800}`, // Deep scroll for cinematic feel
+        pin: true,
+        scrub: 1,
+        anticipatePin: 1
+    }
+});
+
+// Inside your journalCards.forEach loop, add this to the start:
+journalTL.from(".markets-header", {
+    opacity: 0,
+    y: -20,
+    duration: 1
+}, 0); // Triggers at the very beginning of the journal vault
+
+journalCards.forEach((card, i) => {
+    const img = card.querySelector("img");
+    const content = card.querySelector(".journal-content");
+
+    // Sequence: Card flies in from bottom + Image Parallax
+    journalTL.fromTo(card, 
+        { 
+            opacity: 0, 
+            scale: 0.9, 
+            y: 100,
+            rotateX: -10 
+        }, 
+        { 
+            opacity: 1, 
+            scale: 1, 
+            y: 0, 
+            rotateX: 0,
+            duration: 2, 
+            ease: "power2.out" 
+        }
+    );
+
+    // Image slides slightly inside the card for depth
+    journalTL.to(img, {
+        scale: 1,
+        y: -20,
+        duration: 2,
+        ease: "none"
+    }, "<");
+
+    // Content subtle float up
+    journalTL.from(content, {
+        y: 30,
+        opacity: 0,
+        duration: 1.5
+    }, "-=1");
+
+    // THE HOLD: Stay on the card for a significant scroll distance
+    journalTL.to({}, { duration: 3 });
+
+    // EXIT: Card fades and moves up if it's not the last card
+    if (i < journalCards.length - 1) {
+        journalTL.to(card, {
+            opacity: 0,
+            y: -100,
+            scale: 1.1,
+            duration: 2,
+            ease: "power2.in"
+        });
+    }
+});
+
+// FINAL VAULT HOLD (Your requested breathing room)
+journalTL.to({}, { duration: 4 });
+
+
 
 </script>
 
