@@ -1714,7 +1714,7 @@ typeParts(line2Parts, document.getElementById("line2"), 60)
 
 
 /* =============================
-   REFINED IMPACT VAULT (With Exit Hold)
+   IMPACT VAULT STRICT SEQUENTIAL
 ============================= */
 const impactNodes = gsap.utils.toArray("#impact .node");
 const rays = gsap.utils.toArray(".ray");
@@ -1726,12 +1726,11 @@ let impactTL = gsap.timeline({
     scrollTrigger: {
         trigger: "#impact",
         start: "top top",
-        // Increased multiplier from 800 to 1100 to create "scroll space" at the end
-        end: `+=${impactNodes.length * 1100}`, 
+        // Multiplier increased to 1500 per node to ensure a full scroll per item
+        end: `+=${impactNodes.length * 1500}`, 
         pin: true,
-        scrub: 1,
+        scrub: 1, // Keep scrub at 1 for smooth but heavy response
         anticipatePin: 1,
-        invalidateOnRefresh: true
     }
 });
 
@@ -1740,39 +1739,30 @@ impactNodes.forEach((node, i) => {
     const counter = node.querySelector("[data-count]");
     const target = parseFloat(counter.dataset.count);
 
-    impactTL.to(ray, {
-        scaleY: 1,
-        duration: 0.8,
-        ease: "power2.out"
+    // 1. Ray Expansion
+    impactTL.to(ray, { scaleY: 1, duration: 1.5, ease: "power2.inOut" });
+
+    // 2. Node Reveal
+    impactTL.to(node, { opacity: 1, scale: 1, y: 0, duration: 1, ease: "back.out(1.2)" }, "-=0.5");
+
+    // 3. Counter Animation (Standalone step for scroll focus)
+    impactTL.fromTo(counter, { innerText: 0 }, {
+        innerText: target,
+        duration: 2,
+        snap: { innerText: 1 },
+        onUpdate: function() {
+            let value = this.targets()[0].innerText;
+            counter.innerText = Number(value).toFixed(target % 1 !== 0 ? 1 : 0);
+        }
     });
 
-    impactTL.to(node, {
-        opacity: 1,
-        scale: 1,
-        y: 0,
-        duration: 0.6,
-        ease: "back.out(1.7)"
-    }, "-=0.4");
-
-    impactTL.fromTo(counter, 
-        { innerText: 0 }, 
-        {
-            innerText: target,
-            duration: 1.2,
-            snap: { innerText: 1 },
-            ease: "power1.inOut",
-            onUpdate: function() {
-                let value = this.targets()[0].innerText;
-                counter.innerText = Number(value).toFixed(target % 1 !== 0 ? 1 : 0);
-            }
-        }, "-=0.2");
-
-    impactTL.to({}, { duration: 0.5 }); // Small pause between steps
+    // 4. Force a "Dead Zone" hold before the next node can start
+    // This ensures one scroll isn't enough to trigger the next ray
+    impactTL.to({}, { duration: 2 }); 
 });
 
-// THE EXIT HOLD
-// This adds the "one or two more scroll space" before the Story Vault starts.
-impactTL.to({}, { duration: 3 });
+// IMPACT EXIT HOLD (Breathing room before Story)
+impactTL.to({}, { duration: 4 });
 
 
 
@@ -1803,6 +1793,9 @@ ease:"none"
 })
 
 })
+
+// At the end of your storyPanels.forEach...
+storyTL.to({}, { duration: 3 }); // Stay on the last story panel for longer
 
 
 
@@ -1868,6 +1861,9 @@ duration:0.6
 })
 
 })
+
+// At the end of your farmSlides.forEach...
+farmsTL.to({}, { duration: 3 }); // Let the user view the final farm landscape
 
 
 
@@ -1968,6 +1964,9 @@ ScrollTrigger.refresh()
 window.addEventListener("resize", () => {
   ScrollTrigger.refresh()
 })
+
+// After the last route (Surat) is drawn...
+marketsTL.to({}, { duration: 4 }); // Let the full map of Gujarat glow for a while
 
 </script>
 
